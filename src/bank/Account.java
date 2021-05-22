@@ -8,7 +8,7 @@ public class Account {
         this.name = name;
     }
 
-    public String getNamee() {
+    public String getName() {
         return name;
     }
 }
