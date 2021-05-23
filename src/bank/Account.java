@@ -12,7 +12,7 @@ public class Account {
     
     private Float balance;
     private Float creditBalance;
-    private Float status;
+    private boolean status;
     private String creditDate;
     private String creditEndDate;
     
@@ -74,10 +74,12 @@ public class Account {
             }
 
 
-        public float status(){
-            if (balance<0)
+        public Boolean status(){ //true=indebt
+            if (balance<0){
+            this.status = true;
             System.out.println("indebt");
-            return balance;
+            }
+            return false;
             }
 
 
