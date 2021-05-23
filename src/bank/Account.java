@@ -1,15 +1,18 @@
 package bank;
 
+
+
 public class Account {
 
     private String name;
     private String nationalId;
     private String password;
     private String phone;
-    private Float balance;
     private String birthDate;
+    
+    private Float balance;
     private Float creditBalance;
-    private Boolean status;
+    private Float status;
     private String creditDate;
     private String creditEndDate;
     
@@ -47,20 +50,56 @@ public class Account {
             }
 
 
-        public void setBalance(Float balance){
-        this. balance = balance ;
-            }
-        public Float getBalance(){
-        return balance;
-            } 
-
         public void setBirthDate(String birthDate){
         this.birthDate = birthDate;
             }
         public String getBirthDate(){
         return birthDate;
             }
+                
         
+        public void setBalance(Float balance){
+        this. balance = balance ;
+            }
+        public Float getBalance(){
+        return balance;
+            }
+            
+            
+        public void setCreditBalance(Float creditBalance){
+        this. creditBalance = creditBalance ;
+            }
+        public Float getCreditBalance(){
+        return creditBalance;
+            }
+
+
+        public float status(){
+            if (balance<0)
+            System.out.println("indebt");
+            return balance;
+            }
+
+
+        public void setCreditDate(String creditDate) {
+        this.creditDate = creditDate;
+            }
+        public String getCreditDate() {
+        return creditDate;
+            }
+
+
+        public void setCreditEndDate(String creditEndDate) {
+        this.creditEndDate = creditEndDate;
+            }
+        public String getCreditEndDate() {
+        return creditEndDate;
+            }
+
+        
+
+
+
 
         
     }
