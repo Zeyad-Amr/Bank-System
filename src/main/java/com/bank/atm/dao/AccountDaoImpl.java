@@ -13,36 +13,6 @@ import com.bank.atm.utils.Utils;
 public class AccountDaoImpl implements AccountDao {
 
     @Override
-    public List<Account> findAll() {
-        Connection con = DbConnection.getConnection();
-        List<Account> accounts = new LinkedList<>();
-        if (con == null) {
-            return null;
-        }
-        String query = "SELECT * FROM accounts;";
-        try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
-            ResultSet result = preparedStatement.executeQuery();
-            while (result.next()) {
-                Account account = new Account(result.getInt("id"), result.getString("name"),
-                        result.getString("nationalId"), result.getString("password"), result.getDate("birthday"),
-                        result.getString("phone"), result.getDouble("balance"), result.getDouble("creditBalance"),
-                        result.getDate("creditDate"), result.getDate("creditEndDate"), result.getBoolean("status"),
-                        result.getBoolean("gender"));
-                accounts.add(account);
-            }
-        } catch (SQLException se) {
-            se.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
-        }
-        return accounts;
-    }
-
-    @Override
     public Account findByNationalId(String nationalId) {
         Connection con = DbConnection.getConnection();
 
@@ -57,8 +27,9 @@ public class AccountDaoImpl implements AccountDao {
                 Account account = new Account(result.getInt("id"), result.getString("name"),
                         result.getString("nationalId"), result.getString("password"), result.getDate("birthday"),
                         result.getString("phone"), result.getDouble("balance"), result.getDouble("creditBalance"),
+                        result.getString("creditCardNumber"), result.getDouble("creditBalanceLimit"),
                         result.getDate("creditDate"), result.getDate("creditEndDate"), result.getBoolean("status"),
-                        result.getBoolean("gender"));
+                        result.getBoolean("gender"), result.getBoolean("info"));
                 return account;
             }
         } catch (SQLException se) {
@@ -82,7 +53,7 @@ public class AccountDaoImpl implements AccountDao {
         }
         if (account.getId() > 0) {
             // **************** Update Data **************** //
-            String query = "UPDATE accounts SET name=?, nationalId=?, password=?,birthday=?, phone=?, balance=?, creditBalance=?, creditDate=?, creditEndDate=?, status=?, gender=? WHERE id=?;";
+            String query = "UPDATE accounts SET name=?, nationalId=?, password=?,birthday=?, phone=?, balance=?, creditBalance=?, creditCardNumber=?,creditBalanceLimit=?, creditDate=?, creditEndDate=?, status=?, gender=?, info=? WHERE id=?;";
             try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
                 preparedStatement.setString(1, account.getName());
                 preparedStatement.setString(2, account.getNationalId());
@@ -91,11 +62,14 @@ public class AccountDaoImpl implements AccountDao {
                 preparedStatement.setString(5, account.getPhone());
                 preparedStatement.setDouble(6, account.getBalance());
                 preparedStatement.setDouble(7, account.getCreditBalance());
-                preparedStatement.setDate(8, Utils.getSqlDate(account.getCreditDate()));
-                preparedStatement.setDate(9, Utils.getSqlDate(account.getCreditEndDate()));
-                preparedStatement.setBoolean(10, account.getStatus());
-                preparedStatement.setBoolean(11, account.getGender());
-                preparedStatement.setInt(12, account.getId());
+                preparedStatement.setString(8, account.getCreditCardNumber());
+                preparedStatement.setDouble(9, account.getCreditBalanceLimit());
+                preparedStatement.setDate(10, Utils.getSqlDate(account.getCreditDate()));
+                preparedStatement.setDate(11, Utils.getSqlDate(account.getCreditEndDate()));
+                preparedStatement.setBoolean(12, account.getStatus());
+                preparedStatement.setBoolean(13, account.getGender());
+                preparedStatement.setBoolean(14, account.getInfo());
+                preparedStatement.setInt(15, account.getId());
 
                 preparedStatement.executeUpdate();
 
@@ -110,7 +84,7 @@ public class AccountDaoImpl implements AccountDao {
             }
         } else {
             // **************** Create Data **************** //
-            String query = "INSERT INTO accounts  (name, nationalId, password, birthday, phone, balance, creditBalance, creditDate, creditEndDate, status, gender) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+            String query = "INSERT INTO accounts  (name, nationalId, password, birthday, phone, balance, creditBalance, creditCardNumber, creditBalanceLimit, creditDate, creditEndDate, status, gender, info) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
             try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
                 preparedStatement.setString(1, account.getName());
                 preparedStatement.setString(2, account.getNationalId());
@@ -119,10 +93,13 @@ public class AccountDaoImpl implements AccountDao {
                 preparedStatement.setString(5, account.getPhone());
                 preparedStatement.setDouble(6, account.getBalance());
                 preparedStatement.setDouble(7, account.getCreditBalance());
-                preparedStatement.setDate(8, Utils.getSqlDate(account.getCreditDate()));
-                preparedStatement.setDate(9, Utils.getSqlDate(account.getCreditEndDate()));
-                preparedStatement.setBoolean(10, account.getStatus());
-                preparedStatement.setBoolean(11, account.getGender());
+                preparedStatement.setString(8, account.getCreditCardNumber());
+                preparedStatement.setDouble(9, account.getCreditBalanceLimit());
+                preparedStatement.setDate(10, Utils.getSqlDate(account.getCreditDate()));
+                preparedStatement.setDate(11, Utils.getSqlDate(account.getCreditEndDate()));
+                preparedStatement.setBoolean(12, account.getStatus());
+                preparedStatement.setBoolean(13, account.getGender());
+                preparedStatement.setBoolean(14, account.getInfo());
 
                 preparedStatement.executeUpdate();
 

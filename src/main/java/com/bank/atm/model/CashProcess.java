@@ -9,23 +9,21 @@ public class CashProcess {
     private double amount;
     private String process;
     private double balance;
+    private double creditBalance;
     private Date date;
     private String description;
     private String payTo;
 
-    // **************** Constructor ****************//
-    public CashProcess() {
-    }
-
     // **************** Custom Constructor ****************//
-    public CashProcess(int id, String name, String nationalId, double amount, String process, double balance, Date date,
-            String description, String payTo) {
+    public CashProcess(int id, String name, String nationalId, double amount, String process, double balance,
+            double creditBalance, Date date, String description, String payTo) {
         this.id = id;
         this.name = name;
         this.nationalId = nationalId;
         this.amount = amount;
         this.process = process;
         this.balance = balance;
+        this.creditBalance = creditBalance;
         this.balance = balance;
         this.date = date;
         this.description = description;
@@ -84,6 +82,15 @@ public class CashProcess {
 
     public double getBalance() {
         return balance;
+    }
+    // **************** Credit Balance Setter and Getter ****************//
+
+    public void setCreditBalance(double creditBalance) {
+        this.creditBalance = creditBalance;
+    }
+
+    public double getCreditBalance() {
+        return creditBalance;
     }
 
     // **************** Date Setter and Getter ****************//

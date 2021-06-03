@@ -5,9 +5,8 @@ import java.util.List;
 import com.bank.atm.model.CashProcess;
 
 public interface ProcessDao {
-    List<CashProcess> findAll();
 
-    List<CashProcess> findByNationalId(String nationalId);
+    List<CashProcess> findAllByNationalId(String nationalId);
 
     void save(CashProcess process);
 
