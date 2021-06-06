@@ -16,6 +16,7 @@ public class AccountFrame {
 
   public AccountFrame(Account acc) {
     Account account = AccountDao.findByNationalId(acc.getNationalId());
+
     //////////////////////// * Account Fields *///////////////////////
     double balance = acc.getBalance();
     double creditBalance = acc.getCreditBalance();
@@ -40,123 +41,121 @@ public class AccountFrame {
     accFrame.validate();
     accFrame.repaint();
 
-    ////////////////////////////////////////////////////
+    ////////////////////// * Main Panels *//////////////////////
 
     JPanel cardLayoutPanel = new JPanel();
     JPanel headerPanel = new JPanel();
     JPanel accountPanel = new JPanel();
     JPanel transactionPanel = new JPanel();
-
     JPanel creditPanel = new JPanel();
+
     JButton accountButton = new JButton("Account");
     JButton transcButton = new JButton("Transactions");
     JButton creditButton = new JButton("Credit");
+
     CardLayout card1 = new CardLayout();
 
-    // for transactionPanel...........//
-    JPanel pcardt = new JPanel();
+    ////////////////////// * Header Panel Labels *//////////////////////
+    JLabel headerLeftlabel = new JLabel("Welcome " + name.split(" ")[0].toString());
+    JLabel headerRightlabel = new JLabel(info + " account");
+
+    ////////////////////// * Account Panel Labels *//////////////////////
+    JLabel nameTitleLabel = new JLabel("Name");
+    JLabel nameLabel = new JLabel(name);
+    JLabel nationalIDTitleLabel = new JLabel("National ID");
+    JLabel nationalIDLabel = new JLabel(nationalID);
+    JLabel creditCardNumbTitleLabel = new JLabel("Card Number");
+    JLabel creditCardNumbLabel = new JLabel(creditCardNumber);
+    JLabel phoneTitleLabel = new JLabel("Phone");
+    JLabel phoneLabel = new JLabel(phone);
+    JLabel birthdateTitleLabel = new JLabel("Birthday");
+    JLabel birthdateLabel = new JLabel(birthdayDate);
+    JLabel statusTitleLabel = new JLabel("Status");
+    JLabel statusLabel = new JLabel(status);
+    JLabel genderTitleLabel = new JLabel("Gender");
+    JLabel genderLabel = new JLabel(gender);
+    JLabel balanceTitleLabel = new JLabel("Your Balance");
+    JLabel balanceLabel = new JLabel(balance + " EGP");
+
+    JButton detailsButton = new JButton("Details");
+
+    ////////////////////// * Transactions *//////////////////////
+    JPanel transactionCardLayout = new JPanel();
     JPanel pbuttons = new JPanel();
     JPanel depositPanel = new JPanel();
-    JButton depositButton = new JButton("Deposit");
     JPanel transferPanel = new JPanel();
-    JButton transferButton = new JButton("Transfer");
     JPanel withdrawPanel = new JPanel();
+
+    JButton depositButton = new JButton("Deposit");
+    JButton transferButton = new JButton("Transfer");
     JButton withdrawButton = new JButton("Withdraw");
+
     CardLayout card2 = new CardLayout();
 
-    // SET IMAGE......................//
+    ///////////////////////// * IMAGE*////////////////////////
     ImageIcon image1 = new ImageIcon(getClass().getResource("../images/welcome.png"));
     JLabel img = new JLabel(image1);
-    // END OF IMAGE......................//
 
-    // VARIABLES OF CREDIT PANEL
-    // creditPanel..................................................//
+    ////////////////////// * Credit Panel Labels *//////////////////////
     JLabel creditTitleLabel = new JLabel("Credit Payment");
     JLabel amountCreditLabel = new JLabel("Amount");
     JLabel descriptionCreditLabel = new JLabel("Description");
     JLabel creditBalanceTitleLabel = new JLabel("Your Credit Balance");
     JLabel creditBalanceLabel = new JLabel(creditBalance + " EGP");
     JLabel creditexpireLabel = new JLabel("Expires at " + creditEndDate);
-    JLabel payForLabel = new JLabel("Pay For");
+    JLabel payForCreditLabel = new JLabel("Pay For");
 
-    JTextField amountTextField = new JTextField("Enter The Amount");
-    JTextField descriptionTextField = new JTextField("Enter a description");
-    JTextField payForTextField = new JTextField("What you pay for");
+    JTextField amountCreditTextField = new JTextField("Enter The Amount");
+    JTextField descriptionCreditTextField = new JTextField("Enter a description");
+    JTextField payForCreditTextField = new JTextField("What you pay for");
 
-    JButton submitButton = new JButton("Submit");
+    JButton submitCreditButton = new JButton("Submit");
 
-    // END OF VARIABLES OF CREDIT PANEL
-
-    // VARIABLES OF DEPOSIT PANEL
-    // depositPanel..................................................//
+    ////////////////////// * Deposit Panel Labels *//////////////////////
     JLabel depositTitleLabel = new JLabel("Deposit");
-    JLabel Lamdp = new JLabel("Amount");
-    JTextField tamdp = new JTextField("Enter The Amount");
-    JLabel Ldsdp = new JLabel("Description");
-    JTextField tdsdp = new JTextField("Enter a description");
-    JButton bsdp = new JButton("Submit");
-    JLabel LBL1dp = new JLabel("Your Balance");
-    JLabel LBL2dp = new JLabel(balance + " EGP");
-    // END OF VARIABLES OF DEPOSIT PANEL
+    JLabel amountdepositLabel = new JLabel("Amount");
+    JLabel descriptionDepositLabel = new JLabel("Description");
+    JLabel depositBalanceTitleLabel = new JLabel("Your Balance");
+    JLabel depositBalanceLabel = new JLabel(balance + " EGP");
 
-    // VARIABLES OF TRANSFER PANEL
-    // transferPanel..................................................//
-    JLabel Ltr = new JLabel("Transfer");
-    JLabel Lamtr = new JLabel("Amount");
-    JTextField tamtr = new JTextField("Enter The Amount");
-    JLabel Ldstr = new JLabel("Description");
-    JTextField tdstr = new JTextField("Enter a description");
-    JLabel Lnitr = new JLabel("National ID");
-    JTextField tnitr = new JTextField("Enter National ID you transfeer to");
-    JButton bstr = new JButton("Submit");
-    JLabel LBL1tr = new JLabel("Your Balance");
-    JLabel LBL2tr = new JLabel(balance + " EGP");
-    // END OF TRANSFER OF PANEL
-    // transferPanel.............................................//
+    JTextField amountDepositTextField = new JTextField("Enter The Amount");
+    JTextField descriptionDepositTextField = new JTextField("Enter a description");
 
-    // VARIABLES OF Withdraw PANEL
-    // withdrawPanel..................................................//
-    JLabel Lwd = new JLabel("WithDraw");
-    JLabel Lamwd = new JLabel("Amount");
-    JTextField tamwd = new JTextField("Enter The Amount");
-    JLabel Ldswd = new JLabel("Description");
-    JTextField tdswd = new JTextField("Enter a description");
-    JButton bswd = new JButton("Submit");
-    JLabel LBL1wd = new JLabel("Your Balance");
-    JLabel LBL2wd = new JLabel(balance + " EGP");
-    // END OF Withdraw OF PANEL
-    // withdrawPanel.............................................//
-    // END OF TRANSICTIONS PANELS//...............................................//
+    JButton submitDepositButton = new JButton("Submit");
 
-    JLabel headerLeftlabel = new JLabel(info + " account");
-    JLabel headerRightlabel = new JLabel(status);
-    // VARIABLES OF ACCOUNT PANEL
-    // accountPanel...........................................//
+    ////////////////////// * Transfer Panel Labels *//////////////////////
+    JLabel transferTitleLabel = new JLabel("Transfer");
+    JLabel amountTransferLabel = new JLabel("Amount");
+    JLabel descriptionTransferLabel = new JLabel("Description");
+    JLabel nationalIDTransferLabel = new JLabel("National ID");
+    JLabel transferBalanceTitleLabel = new JLabel("Your Balance");
+    JLabel transferBalanceLabel = new JLabel(balance + " EGP");
 
-    JLabel Lname1 = new JLabel("Name");
-    JLabel Lname2 = new JLabel(name);
-    JLabel id1 = new JLabel("Ntional ID");
-    JLabel id2 = new JLabel(nationalID);
-    JLabel num1 = new JLabel("Phone Number");
-    JLabel num2 = new JLabel(phone);
-    JLabel bd1 = new JLabel("Status");
-    JLabel bd2 = new JLabel(status);
-    JLabel g1 = new JLabel("Gender");
-    JLabel g2 = new JLabel(gender);
-    JLabel bL1 = new JLabel("Your Balance");
-    JLabel bL2 = new JLabel(balance + " EGP");
-    JButton bsp = new JButton("Details");
+    JTextField amountTransferTextField = new JTextField("Enter The Amount");
+    JTextField descriptionTransferTextField = new JTextField("Enter a description");
+    JTextField nationalIdTransferTextField = new JTextField("Enter National ID you transfer to");
 
-    // END OF VARIABLES OF ACOUNT PANEL
-    // pt.............................................//
+    JButton submitTransferButton = new JButton("Submit");
 
-    // BUTTONS ACTION
-    // LISTENER............////////////////////////////////////////////
-    // OPEN PROCESSES TABLE FRAME.................//
-    bsp.addActionListener(new ActionListener() {
+    ////////////////////// * Withdraw Panel Labels *//////////////////////
+    JLabel withdrawTitleLabel = new JLabel("WithDraw");
+    JLabel amountWithdrawLabel = new JLabel("Amount");
+    JLabel descriptionWithdrawLabel = new JLabel("Description");
+    JLabel withdrawBalanceTitleLabel = new JLabel("Your Balance");
+    JLabel withdrawBalanceLabel = new JLabel(balance + " EGP");
+
+    JTextField amountWithdrawTextField = new JTextField("Enter The Amount");
+    JTextField descriptionWithdrawTextField = new JTextField("Enter a description");
+
+    JButton submitWithdrawButton = new JButton("Submit");
+
+    ////////////////////// * Functions *//////////////////////
+
+    ////////////////////// * Details Button Listener *////////////////
+    detailsButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == bsp) {
+        if (ae.getSource() == detailsButton) {
           // TableGUI nt = new TableGUI();
 
           new AccountFrame(account);
@@ -165,13 +164,12 @@ public class AccountFrame {
         }
       }
     });
-    // DONE OPEN PROCESSES TABLE FRAME.................//
 
-    // Amount entered for transiction DEPOSIT............//
-    bsdp.addActionListener((ActionEvent ae) -> {
-      if (ae.getSource() == bsdp) {
+    ////////////////////// * Deposit Submit Button Listener *//////////////////
+    submitDepositButton.addActionListener((ActionEvent ae) -> {
+      if (ae.getSource() == submitDepositButton) {
         try {
-          int amountDp = Integer.parseInt(tamdp.getText());
+          int amountDp = Integer.parseInt(amountDepositTextField.getText());
           if (amountDp <= 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
           } else {
@@ -180,19 +178,44 @@ public class AccountFrame {
         } catch (NumberFormatException e) {
           JOptionPane.showMessageDialog(accFrame, "Enter Numbers Only");
         }
-        String DescriptionDp = tdsdp.getText();
+        String DescriptionDp = descriptionDepositTextField.getText();
         System.out.println(DescriptionDp);
       }
     });
-    // FINISHED Amount entered for transiction DEPOSIT............//
-    // Amount entered for transiction TRANSFER............//
-    bstr.addActionListener(new ActionListener() {
+
+    ////////////////////// * Deposit Text Field Listeners *////////////////
+    amountDepositTextField.addFocusListener(new FocusListener() {
+      @Override
+      public void focusGained(FocusEvent e) {
+        amountDepositTextField.setText("");
+      }
+
+      @Override
+      public void focusLost(FocusEvent fe) {
+        // amountDepositTextField.setText("Enter The Amount");
+      }
+    });
+
+    descriptionDepositTextField.addFocusListener(new FocusListener() {
+      @Override
+      public void focusGained(FocusEvent e) {
+        descriptionDepositTextField.setText("");
+      }
+
+      @Override
+      public void focusLost(FocusEvent fe) {
+
+      }
+    });
+
+    ////////////////////// * Transfer Submit Button Listener *////////////////////
+    submitTransferButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == bstr) {
+        if (ae.getSource() == submitTransferButton) {
           // AMOUNT
           try {
-            int amountTr = Integer.parseInt(tamtr.getText());
+            int amountTr = Integer.parseInt(amountTransferTextField.getText());
             if (amountTr <= 0) {
               JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
             } else {
@@ -202,12 +225,12 @@ public class AccountFrame {
             JOptionPane.showMessageDialog(accFrame, "Enter Numbers Only for amount");
           }
           // DESCRIPTION
-          String DescriptionTR = tdstr.getText();
+          String DescriptionTR = descriptionTransferTextField.getText();
           System.out.println(DescriptionTR);
           // NATIONAL ID
           try {
             int NIDUSER = 123456789;
-            int NationalIdTr = Integer.parseInt(tnitr.getText());
+            int NationalIdTr = Integer.parseInt(nationalIdTransferTextField.getText());
             if (NationalIdTr != NIDUSER) {
               JOptionPane.showMessageDialog(accFrame, "Enter valid Natinal ID User");
             } else {
@@ -219,12 +242,49 @@ public class AccountFrame {
         }
       }
     });
-    // FINISHED Amount entered for transiction TRANSFER............//
-    // Amount entered for transiction WITHDRAW............//
-    bswd.addActionListener((ActionEvent ae) -> {
-      if (ae.getSource() == bswd) {
+
+    ////////////////////// * Transfer Text Field Listeners *////////////////
+    amountTransferTextField.addFocusListener(new FocusListener() {
+      @Override
+      public void focusGained(FocusEvent e) {
+        amountTransferTextField.setText("");
+      }
+
+      @Override
+      public void focusLost(FocusEvent fe) {
+
+      }
+    });
+
+    descriptionTransferTextField.addFocusListener(new FocusListener() {
+      @Override
+      public void focusGained(FocusEvent e) {
+        descriptionTransferTextField.setText("");
+      }
+
+      @Override
+      public void focusLost(FocusEvent fe) {
+
+      }
+    });
+
+    nationalIdTransferTextField.addFocusListener(new FocusListener() {
+      @Override
+      public void focusGained(FocusEvent e) {
+        nationalIdTransferTextField.setText("");
+      }
+
+      @Override
+      public void focusLost(FocusEvent fe) {
+
+      }
+    });
+
+    ////////////////////// * Withdraw Submit Button Listener */////////////////////
+    submitWithdrawButton.addActionListener((ActionEvent ae) -> {
+      if (ae.getSource() == submitWithdrawButton) {
         try {
-          int amountWd = Integer.parseInt(tamwd.getText());
+          int amountWd = Integer.parseInt(amountWithdrawTextField.getText());
           if (amountWd <= 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
           } else {
@@ -233,16 +293,41 @@ public class AccountFrame {
         } catch (NumberFormatException e) {
           JOptionPane.showMessageDialog(accFrame, "Enter Numbers Only");
         }
-        String DescriptionWd = tdswd.getText();
+        String DescriptionWd = descriptionWithdrawTextField.getText();
         System.out.println(DescriptionWd);
       }
     });
-    // FINISHED Amount entered for transiction WITHDRAW............//
-    // Amount entered for CREDIT Payment............//
-    submitButton.addActionListener((ActionEvent ae) -> {
-      if (ae.getSource() == submitButton) {
+
+    ////////////////////// * Withdraw Text Field Listeners *////////////////
+    amountWithdrawTextField.addFocusListener(new FocusListener() {
+      @Override
+      public void focusGained(FocusEvent e) {
+        amountWithdrawTextField.setText("");
+      }
+
+      @Override
+      public void focusLost(FocusEvent fe) {
+
+      }
+    });
+
+    descriptionWithdrawTextField.addFocusListener(new FocusListener() {
+      @Override
+      public void focusGained(FocusEvent e) {
+        descriptionWithdrawTextField.setText("");
+      }
+
+      @Override
+      public void focusLost(FocusEvent fe) {
+
+      }
+    });
+
+    ////////////////////// * Credit Submit Button Listener *////////////////
+    submitCreditButton.addActionListener((ActionEvent ae) -> {
+      if (ae.getSource() == submitCreditButton) {
         try {
-          int amountCR = Integer.parseInt(amountTextField.getText());
+          int amountCR = Integer.parseInt(amountCreditTextField.getText());
           if (amountCR <= 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
           } else {
@@ -251,374 +336,57 @@ public class AccountFrame {
         } catch (NumberFormatException e) {
           JOptionPane.showMessageDialog(accFrame, "Enter Numbers Only");
         }
-        String DescriptionCR = descriptionTextField.getText();
+        String DescriptionCR = descriptionCreditTextField.getText();
         System.out.println(DescriptionCR);
-        String PayForCR = payForTextField.getText();
+        String PayForCR = payForCreditTextField.getText();
         System.out.println(PayForCR);
       }
     });
-    // FINISHED Amount entered for CREDIT Payment............//
-    // END OF BUTTONS ACTION
-    // LISTENER............////////////////////////////////////////////
 
-    headerPanel.setBackground(new java.awt.Color(34, 45, 65));
-    headerPanel.add(headerLeftlabel);
-    headerPanel.add(headerRightlabel);
-    headerPanel.setLayout(null);
-    accountButton.setBounds(0, 50, 333, 50);
-    transcButton.setBounds(333, 50, 333, 50);
-    creditButton.setBounds(666, 50, 333, 50);
-    headerLeftlabel.setBounds(20, 0, 500, 50);
-    headerRightlabel.setBounds(850, 0, 400, 50);
-    headerLeftlabel.setBackground(new java.awt.Color(34, 45, 65));
-    headerLeftlabel.setForeground(Color.WHITE);
-    headerLeftlabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    headerRightlabel.setBackground(new java.awt.Color(34, 45, 65));
-    headerRightlabel.setForeground(Color.WHITE);
-    headerRightlabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
-
-    accountButton.setBackground(new java.awt.Color(34, 45, 65));
-    transcButton.setBackground(new java.awt.Color(34, 45, 65));
-    creditButton.setBackground(new java.awt.Color(34, 45, 65));
-    accountButton.setForeground(Color.WHITE);
-    transcButton.setForeground(Color.WHITE);
-    creditButton.setForeground(Color.WHITE);
-    accountButton.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    transcButton.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    creditButton.setFont(new Font("Arial Rounded MT bold", 30, 20));
-
-    // ACOUNT PANEL accountPanel...........................................//
-    accountPanel.setBackground(new java.awt.Color(34, 45, 65));
-    accountPanel.setLayout(null);
-    accountPanel.add(Lname1);
-    accountPanel.add(id1);
-    accountPanel.add(num1);
-    accountPanel.add(bd1);
-    accountPanel.add(g1);
-    accountPanel.add(bL1);
-    accountPanel.add(Lname2);
-    accountPanel.add(id2);
-    accountPanel.add(num2);
-    accountPanel.add(bd2);
-    accountPanel.add(g2);
-    accountPanel.add(bL2);
-    accountPanel.add(bsp);
-    Lname1.setBounds(60, 60, 190, 40);
-    Lname2.setBounds(260, 60, 400, 40);
-    id1.setBounds(60, 100, 190, 40);
-    id2.setBounds(260, 100, 400, 40);
-    bL1.setBounds(710, 90, 350, 40);
-    num1.setBounds(60, 140, 190, 40);
-    num2.setBounds(260, 140, 400, 40);
-    bL2.setBounds(730, 130, 350, 100);
-    bd1.setBounds(60, 180, 190, 40);
-    bd2.setBounds(260, 180, 400, 40);
-    g1.setBounds(60, 220, 190, 40);
-    g2.setBounds(260, 220, 400, 40);
-    bsp.setBounds(200, 300, 400, 50);
-
-    Lname1.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    Lname1.setForeground(new java.awt.Color(161, 194, 255));
-    Lname2.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    Lname2.setForeground(Color.WHITE);
-    id1.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    id1.setForeground(new java.awt.Color(161, 194, 255));
-    id2.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    id2.setForeground(Color.WHITE);
-    num1.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    num1.setForeground(new java.awt.Color(161, 194, 255));
-    num2.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    num2.setForeground(Color.WHITE);
-    bd1.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    bd1.setForeground(new java.awt.Color(161, 194, 255));
-    bd2.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    bd2.setForeground(Color.WHITE);
-
-    g1.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    g1.setForeground(new java.awt.Color(161, 194, 255));
-    g2.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    g2.setForeground(Color.WHITE);
-    bL1.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    bL1.setForeground(new java.awt.Color(161, 194, 255));
-    bL2.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    bL2.setForeground(Color.WHITE);
-    bsp.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    bsp.setBackground(new java.awt.Color(161, 194, 255));
-    // END OF ACOUNT PANEL pt.............................................//
-    // TRANSICTIONS PANELS.......///////////////////////////
-
-    depositPanel.setBackground(Color.green);
-    transferPanel.setBackground(Color.red);
-    withdrawPanel.setBackground(Color.blue);
-    // CREDIT DEPOSIT PANEL
-    // depositPanel..................................................//
-    int x = 70;
-    depositPanel.setBackground(new java.awt.Color(63, 63, 63));
-    depositPanel.setLayout(null);
-    depositPanel.add(depositTitleLabel);
-    depositPanel.add(bsdp);
-    depositPanel.add(Lamdp);
-    depositPanel.add(Ldsdp);
-    depositPanel.add(LBL1dp);
-    depositPanel.add(tamdp);
-    depositPanel.add(tdsdp);
-    depositPanel.add(LBL2dp);
-
-    depositTitleLabel.setBounds(260, 60, 400, 40);
-    Lamdp.setBounds(40, 60 + x, 160, 40);
-    tamdp.setBounds(200, 60 + x, 400, 40);
-    LBL1dp.setBounds(710, 90, 350, 40);
-    Ldsdp.setBounds(40, 100 + x, 160, 40);
-    tdsdp.setBounds(200, 100 + x, 400, 40);
-    LBL2dp.setBounds(730, 130, 350, 100);
-    bsdp.setBounds(200, 190 + x, 400, 50);
-
-    Lamdp.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    Lamdp.setForeground(new java.awt.Color(161, 194, 255));
-    Ldsdp.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    Ldsdp.setForeground(new java.awt.Color(161, 194, 255));
-
-    tamdp.setForeground(Color.WHITE);
-    tamdp.setBackground(new java.awt.Color(34, 45, 65));
-    tamdp.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    tdsdp.setForeground(Color.WHITE);
-    tdsdp.setBackground(new java.awt.Color(34, 45, 65));
-    tdsdp.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    depositTitleLabel.setFont(new Font("Arial Rounded MT bold", 45, 35));
-    depositTitleLabel.setForeground(Color.WHITE);
-    LBL1dp.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    LBL1dp.setForeground(Color.WHITE);
-    LBL2dp.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    LBL2dp.setForeground(new java.awt.Color(161, 194, 255));
-    LBL2dp.setBackground(Color.WHITE);
-    bsdp.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    bsdp.setBackground(new java.awt.Color(161, 194, 255));
-
-    // END OF DEPOSIT PANEL
-    // depositPanel.............................................//
-
-    // TRANSFER PANEL
-    // transferPanel..................................................//
-
-    transferPanel.setBackground(new java.awt.Color(63, 63, 63));
-    transferPanel.setLayout(null);
-    transferPanel.add(Ltr);
-    transferPanel.add(bstr);
-    transferPanel.add(Lamtr);
-    transferPanel.add(Ldstr);
-    transferPanel.add(Lnitr);
-    transferPanel.add(LBL1tr);
-    transferPanel.add(tamtr);
-    transferPanel.add(tdstr);
-    transferPanel.add(tnitr);
-    transferPanel.add(LBL2tr);
-
-    Ltr.setBounds(260, 60, 400, 40);
-    Lamtr.setBounds(40, 60 + x, 160, 40);
-    tamtr.setBounds(200, 60 + x, 400, 40);
-    LBL1tr.setBounds(710, 90, 350, 40);
-    Ldstr.setBounds(40, 100 + x, 160, 40);
-    tdstr.setBounds(200, 100 + x, 400, 40);
-    LBL2tr.setBounds(730, 130, 350, 100);
-    Lnitr.setBounds(40, 140 + x, 160, 40);
-    tnitr.setBounds(200, 140 + x, 400, 40);
-    bstr.setBounds(200, 190 + x, 400, 50);
-
-    Lamtr.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    Lamtr.setForeground(new java.awt.Color(161, 194, 255));
-    Ldstr.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    Ldstr.setForeground(new java.awt.Color(161, 194, 255));
-    Lnitr.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    Lnitr.setForeground(new java.awt.Color(161, 194, 255));
-
-    tamtr.setForeground(Color.WHITE);
-    tamtr.setBackground(new java.awt.Color(34, 45, 65));
-    tamtr.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    tdstr.setForeground(Color.WHITE);
-    tdstr.setBackground(new java.awt.Color(34, 45, 65));
-    tdstr.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    tnitr.setForeground(Color.WHITE);
-    tnitr.setBackground(new java.awt.Color(34, 45, 65));
-    tnitr.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    Ltr.setFont(new Font("Arial Rounded MT bold", 45, 35));
-    Ltr.setForeground(Color.WHITE);
-    LBL1tr.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    LBL1tr.setForeground(Color.WHITE);
-    LBL2tr.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    LBL2tr.setForeground(new java.awt.Color(161, 194, 255));
-    LBL2tr.setBackground(Color.WHITE);
-    bstr.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    bstr.setBackground(new java.awt.Color(161, 194, 255));
-
-    // END OF TRANSFER PANEL
-    // transferPanel..............................................//
-    // Withdraw PANEL
-    // withdrawPanel...................................................//
-
-    withdrawPanel.setBackground(new java.awt.Color(63, 63, 63));
-    withdrawPanel.setLayout(null);
-    withdrawPanel.add(Lwd);
-    withdrawPanel.add(bswd);
-    withdrawPanel.add(Lamwd);
-    withdrawPanel.add(Ldswd);
-    withdrawPanel.add(LBL1wd);
-    withdrawPanel.add(tamwd);
-    withdrawPanel.add(tdswd);
-    withdrawPanel.add(LBL2wd);
-
-    Lwd.setBounds(260, 60, 400, 40);
-    Lamwd.setBounds(40, 60 + x, 160, 40);
-    tamwd.setBounds(200, 60 + x, 400, 40);
-    LBL1wd.setBounds(710, 90, 350, 40);
-    Ldswd.setBounds(40, 100 + x, 160, 40);
-    tdswd.setBounds(200, 100 + x, 400, 40);
-    LBL2wd.setBounds(730, 130, 350, 100);
-    bswd.setBounds(200, 190 + x, 400, 50);
-
-    Lamwd.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    Lamwd.setForeground(new java.awt.Color(161, 194, 255));
-    Ldswd.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    Ldswd.setForeground(new java.awt.Color(161, 194, 255));
-
-    tamwd.setForeground(Color.WHITE);
-    tamwd.setBackground(new java.awt.Color(34, 45, 65));
-    tamwd.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    tdswd.setForeground(Color.WHITE);
-    tdswd.setBackground(new java.awt.Color(34, 45, 65));
-    tdswd.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    Lwd.setFont(new Font("Arial Rounded MT bold", 45, 35));
-    Lwd.setForeground(Color.WHITE);
-    LBL1wd.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    LBL1wd.setForeground(Color.WHITE);
-    LBL2wd.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    LBL2wd.setForeground(new java.awt.Color(161, 194, 255));
-    LBL2wd.setBackground(Color.WHITE);
-    bswd.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    bswd.setBackground(new java.awt.Color(161, 194, 255));
-
-    // END OF Withdraw PANEL
-    // withdrawPanel..............................................//
-
-    // END OF TRANSICTIONS PANELS//...............................................//
-    transactionPanel.setLayout(null);
-    transactionPanel.add(pbuttons);
-    transactionPanel.add(pcardt);
-    pbuttons.setBounds(0, 0, 1000, 50);
-    pcardt.setBounds(0, 50, 1000, 512);
-
-    pcardt.setLayout(card2);
-    pbuttons.add(depositButton);
-    pbuttons.add(transferButton);
-    pbuttons.add(withdrawButton);
-    pbuttons.setLayout(null);
-    depositButton.setBounds(0, 0, 333, 50);
-    transferButton.setBounds(333, 0, 333, 50);
-    withdrawButton.setBounds(666, 0, 333, 50);
-
-    depositButton.setBackground(new java.awt.Color(63, 63, 63));
-    transferButton.setBackground(new java.awt.Color(63, 63, 63));
-    withdrawButton.setBackground(new java.awt.Color(63, 63, 63));
-    depositButton.setForeground(Color.WHITE);
-    transferButton.setForeground(Color.WHITE);
-    withdrawButton.setForeground(Color.WHITE);
-    depositButton.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    transferButton.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    withdrawButton.setFont(new Font("Arial Rounded MT bold", 30, 20));
-
-    pcardt.add(depositPanel, "5");
-    pcardt.add(transferPanel, "6");
-    pcardt.add(withdrawPanel, "7");
-    card2.show(pcardt, "1");
-
-    depositButton.addActionListener(new ActionListener() {
+    ////////////////////// * Credit Text Field Listeners *////////////////
+    amountCreditTextField.addFocusListener(new FocusListener() {
       @Override
-      public void actionPerformed(ActionEvent ae) {
-        card2.show(pcardt, "5");
+      public void focusGained(FocusEvent e) {
+        amountCreditTextField.setText("");
+      }
+
+      @Override
+      public void focusLost(FocusEvent fe) {
+
       }
     });
 
-    transferButton.addActionListener(new ActionListener() {
+    descriptionCreditTextField.addFocusListener(new FocusListener() {
       @Override
-      public void actionPerformed(ActionEvent ae) {
-        card2.show(pcardt, "6");
+      public void focusGained(FocusEvent e) {
+        descriptionCreditTextField.setText("");
+      }
+
+      @Override
+      public void focusLost(FocusEvent fe) {
+
       }
     });
-    withdrawButton.addActionListener(new ActionListener() {
+
+    payForCreditTextField.addFocusListener(new FocusListener() {
       @Override
-      public void actionPerformed(ActionEvent ae) {
-        card2.show(pcardt, "7");
+      public void focusGained(FocusEvent e) {
+        payForCreditTextField.setText("");
+      }
+
+      @Override
+      public void focusLost(FocusEvent fe) {
+
       }
     });
-
-    // CREDIT PANEL creditPanel..................................................//
-
-    creditPanel.setBackground(new java.awt.Color(34, 45, 65));
-    creditPanel.setLayout(null);
-    creditPanel.add(creditTitleLabel);
-    creditPanel.add(submitButton);
-    creditPanel.add(amountCreditLabel);
-    creditPanel.add(descriptionCreditLabel);
-    creditPanel.add(payForLabel);
-    creditPanel.add(creditBalanceTitleLabel);
-    creditPanel.add(amountTextField);
-    creditPanel.add(descriptionTextField);
-    creditPanel.add(payForTextField);
-    creditPanel.add(creditBalanceLabel);
-    creditPanel.add(creditexpireLabel);
-
-    creditTitleLabel.setBounds(260, 60, 400, 40);
-    amountCreditLabel.setBounds(40, 60 + x, 160, 40);
-    amountTextField.setBounds(200, 60 + x, 400, 40);
-    creditBalanceTitleLabel.setBounds(650, 90, 350, 40);
-    descriptionCreditLabel.setBounds(40, 100 + x, 160, 40);
-    descriptionTextField.setBounds(200, 100 + x, 400, 40);
-    creditBalanceLabel.setBounds(730, 130, 350, 100);
-    payForLabel.setBounds(40, 140 + x, 160, 40);
-    payForTextField.setBounds(200, 140 + x, 400, 40);
-    creditexpireLabel.setBounds(690, 200, 350, 100);
-    submitButton.setBounds(200, 190 + x, 400, 50);
-
-    amountCreditLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    amountCreditLabel.setForeground(new java.awt.Color(161, 194, 255));
-    descriptionCreditLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    descriptionCreditLabel.setForeground(new java.awt.Color(161, 194, 255));
-    payForLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    payForLabel.setForeground(new java.awt.Color(161, 194, 255));
-
-    amountTextField.setForeground(Color.WHITE);
-    amountTextField.setBackground(new java.awt.Color(34, 45, 65));
-    amountTextField.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    descriptionTextField.setForeground(Color.WHITE);
-    descriptionTextField.setBackground(new java.awt.Color(34, 45, 65));
-    descriptionTextField.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    payForTextField.setForeground(Color.WHITE);
-    payForTextField.setBackground(new java.awt.Color(34, 45, 65));
-    payForTextField.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    creditTitleLabel.setFont(new Font("Arial Rounded MT bold", 45, 35));
-    creditTitleLabel.setForeground(Color.WHITE);
-    creditBalanceTitleLabel.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    creditBalanceTitleLabel.setForeground(Color.WHITE);
-    creditBalanceLabel.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    creditBalanceLabel.setForeground(new java.awt.Color(161, 194, 255));
-    creditBalanceLabel.setBackground(Color.WHITE);
-    submitButton.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    submitButton.setBackground(new java.awt.Color(161, 194, 255));
-    creditexpireLabel.setFont(new Font("Arial Rounded MT bold", 40, 30));
-    creditexpireLabel.setForeground(new java.awt.Color(161, 194, 255));
-    creditexpireLabel.setBackground(Color.WHITE);
-
-    // END OF CREDIT PANEL
-    // creditPanel.............................................//
 
     accFrame.setLayout(null);
     accFrame.add(headerPanel);
     accFrame.add(img);
     accFrame.add(cardLayoutPanel);
-    ////////////////////////////////////////////////////////////////////////////////
     img.setBounds(0, 0, 1000, 104);
     headerPanel.setBounds(0, 104, 1000, 50 + 50);
     cardLayoutPanel.setBounds(0, 204, 1000, 512);
-
     cardLayoutPanel.setLayout(card1);
     headerPanel.add(accountButton);
     headerPanel.add(transcButton);
@@ -645,137 +413,378 @@ public class AccountFrame {
       }
     });
 
-    accFrame.add(cardLayoutPanel);
-    // accFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    // accFrame.pack();
-    // accFrame.setVisible(true);
-    // accFrame.setResizable(false);
-    // accFrame.setSize(1000, 666);
-    // accFrame.setLocation(20, 20);
+    //////////////////////////// * Style *///////////////////////////
+    headerPanel.setBackground(new java.awt.Color(34, 45, 65));
+    headerPanel.add(headerLeftlabel);
+    headerPanel.add(headerRightlabel);
+    headerPanel.setLayout(null);
+    accountButton.setBounds(0, 50, 333, 50);
+    transcButton.setBounds(333, 50, 333, 50);
+    creditButton.setBounds(666, 50, 333, 50);
+    headerLeftlabel.setBounds(20, 0, 500, 50);
+    headerRightlabel.setBounds(760, 0, 400, 50);
+    headerLeftlabel.setBackground(new java.awt.Color(34, 45, 65));
+    headerLeftlabel.setForeground(Color.WHITE);
+    headerLeftlabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    headerRightlabel.setBackground(new java.awt.Color(34, 45, 65));
+    headerRightlabel.setForeground(Color.WHITE);
+    headerRightlabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
 
-    // EMPTY THE TEXT
-    // FIELDS......................................................//////
-    tamdp.addFocusListener(new FocusListener() {
-      @Override
-      public void focusGained(FocusEvent e) {
-        tamdp.setText("");
-      }
+    accountButton.setBackground(new java.awt.Color(34, 45, 65));
+    transcButton.setBackground(new java.awt.Color(34, 45, 65));
+    creditButton.setBackground(new java.awt.Color(34, 45, 65));
+    accountButton.setForeground(Color.WHITE);
+    transcButton.setForeground(Color.WHITE);
+    creditButton.setForeground(Color.WHITE);
+    accountButton.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    transcButton.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    creditButton.setFont(new Font("Arial Rounded MT bold", 30, 20));
 
+    // ACOUNT PANEL accountPanel...........................................//
+    accountPanel.setBackground(new java.awt.Color(34, 45, 65));
+    accountPanel.setLayout(null);
+    accountPanel.add(nameTitleLabel);
+    accountPanel.add(nationalIDTitleLabel);
+    accountPanel.add(phoneTitleLabel);
+    accountPanel.add(statusTitleLabel);
+    accountPanel.add(genderTitleLabel);
+    accountPanel.add(balanceTitleLabel);
+    accountPanel.add(nameLabel);
+    accountPanel.add(nationalIDLabel);
+    accountPanel.add(phoneLabel);
+    accountPanel.add(statusLabel);
+    accountPanel.add(genderLabel);
+    accountPanel.add(creditCardNumbLabel);
+    accountPanel.add(creditCardNumbTitleLabel);
+    accountPanel.add(birthdateLabel);
+    accountPanel.add(birthdateTitleLabel);
+    accountPanel.add(balanceLabel);
+    accountPanel.add(detailsButton);
+
+    nameTitleLabel.setBounds(60, 30, 190, 40);
+    nationalIDTitleLabel.setBounds(60, 60, 190, 40);
+    creditCardNumbTitleLabel.setBounds(60, 90, 190, 40);
+    phoneTitleLabel.setBounds(60, 120, 190, 40);
+    genderTitleLabel.setBounds(60, 150, 190, 40);
+    birthdateTitleLabel.setBounds(60, 180, 190, 40);
+    statusTitleLabel.setBounds(60, 210, 190, 40);
+
+    nameLabel.setBounds(260, 30, 400, 40);
+    nationalIDLabel.setBounds(260, 60, 400, 40);
+    creditCardNumbLabel.setBounds(260, 90, 400, 40);
+    phoneLabel.setBounds(260, 120, 400, 40);
+    genderLabel.setBounds(260, 150, 400, 40);
+    birthdateLabel.setBounds(260, 180, 400, 40);
+    statusLabel.setBounds(260, 210, 400, 40);
+
+    balanceTitleLabel.setBounds(710, 90, 350, 40);
+    balanceLabel.setBounds(730, 130, 350, 100);
+    detailsButton.setBounds(200, 300, 400, 50);
+
+    nameTitleLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    nameTitleLabel.setForeground(new java.awt.Color(161, 194, 255));
+    nameLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    nameLabel.setForeground(Color.WHITE);
+    nationalIDTitleLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    nationalIDTitleLabel.setForeground(new java.awt.Color(161, 194, 255));
+    nationalIDLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    nationalIDLabel.setForeground(Color.WHITE);
+
+    birthdateTitleLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    birthdateTitleLabel.setForeground(new java.awt.Color(161, 194, 255));
+    birthdateLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    birthdateLabel.setForeground(Color.WHITE);
+
+    creditCardNumbTitleLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    creditCardNumbTitleLabel.setForeground(new java.awt.Color(161, 194, 255));
+    creditCardNumbLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    creditCardNumbLabel.setForeground(Color.WHITE);
+
+    phoneTitleLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    phoneTitleLabel.setForeground(new java.awt.Color(161, 194, 255));
+    phoneLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    phoneLabel.setForeground(Color.WHITE);
+    statusTitleLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    statusTitleLabel.setForeground(new java.awt.Color(161, 194, 255));
+    statusLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    statusLabel.setForeground(Color.WHITE);
+
+    genderTitleLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    genderTitleLabel.setForeground(new java.awt.Color(161, 194, 255));
+    genderLabel.setFont(new Font("Arial Rounded MT bold", 35, 20));
+    genderLabel.setForeground(Color.WHITE);
+    balanceTitleLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    balanceTitleLabel.setForeground(new java.awt.Color(161, 194, 255));
+    balanceLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    balanceLabel.setForeground(Color.WHITE);
+    detailsButton.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    detailsButton.setBackground(new java.awt.Color(161, 194, 255));
+    // END OF ACOUNT PANEL pt.............................................//
+    // TRANSICTIONS PANELS.......///////////////////////////
+
+    depositPanel.setBackground(Color.green);
+    transferPanel.setBackground(Color.red);
+    withdrawPanel.setBackground(Color.blue);
+    // CREDIT DEPOSIT PANEL
+    // depositPanel..................................................//
+    int x = 70;
+    depositPanel.setBackground(new java.awt.Color(63, 63, 63));
+    depositPanel.setLayout(null);
+    depositPanel.add(depositTitleLabel);
+    depositPanel.add(submitDepositButton);
+    depositPanel.add(amountdepositLabel);
+    depositPanel.add(descriptionDepositLabel);
+    depositPanel.add(depositBalanceTitleLabel);
+    depositPanel.add(amountDepositTextField);
+    depositPanel.add(descriptionDepositTextField);
+    depositPanel.add(depositBalanceLabel);
+
+    depositTitleLabel.setBounds(260, 60, 400, 40);
+    amountdepositLabel.setBounds(40, 60 + x, 160, 40);
+    amountDepositTextField.setBounds(200, 60 + x, 400, 40);
+    depositBalanceTitleLabel.setBounds(710, 90, 350, 40);
+    descriptionDepositLabel.setBounds(40, 100 + x, 160, 40);
+    descriptionDepositTextField.setBounds(200, 100 + x, 400, 40);
+    depositBalanceLabel.setBounds(730, 130, 350, 100);
+    submitDepositButton.setBounds(200, 190 + x, 400, 50);
+
+    amountdepositLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    amountdepositLabel.setForeground(new java.awt.Color(161, 194, 255));
+    descriptionDepositLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    descriptionDepositLabel.setForeground(new java.awt.Color(161, 194, 255));
+
+    amountDepositTextField.setForeground(Color.WHITE);
+    amountDepositTextField.setBackground(new java.awt.Color(34, 45, 65));
+    amountDepositTextField.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    descriptionDepositTextField.setForeground(Color.WHITE);
+    descriptionDepositTextField.setBackground(new java.awt.Color(34, 45, 65));
+    descriptionDepositTextField.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    depositTitleLabel.setFont(new Font("Arial Rounded MT bold", 45, 35));
+    depositTitleLabel.setForeground(Color.WHITE);
+    depositBalanceTitleLabel.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    depositBalanceTitleLabel.setForeground(Color.WHITE);
+    depositBalanceLabel.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    depositBalanceLabel.setForeground(new java.awt.Color(161, 194, 255));
+    depositBalanceLabel.setBackground(Color.WHITE);
+    submitDepositButton.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    submitDepositButton.setBackground(new java.awt.Color(161, 194, 255));
+
+    // END OF DEPOSIT PANEL
+    // depositPanel.............................................//
+
+    // TRANSFER PANEL
+    // transferPanel..................................................//
+
+    transferPanel.setBackground(new java.awt.Color(63, 63, 63));
+    transferPanel.setLayout(null);
+    transferPanel.add(transferTitleLabel);
+    transferPanel.add(submitTransferButton);
+    transferPanel.add(amountTransferLabel);
+    transferPanel.add(descriptionTransferLabel);
+    transferPanel.add(nationalIDTransferLabel);
+    transferPanel.add(transferBalanceTitleLabel);
+    transferPanel.add(amountTransferTextField);
+    transferPanel.add(descriptionTransferTextField);
+    transferPanel.add(nationalIdTransferTextField);
+    transferPanel.add(transferBalanceLabel);
+
+    transferTitleLabel.setBounds(260, 60, 400, 40);
+    amountTransferLabel.setBounds(40, 60 + x, 160, 40);
+    amountTransferTextField.setBounds(200, 60 + x, 400, 40);
+    transferBalanceTitleLabel.setBounds(710, 90, 350, 40);
+    descriptionTransferLabel.setBounds(40, 100 + x, 160, 40);
+    descriptionTransferTextField.setBounds(200, 100 + x, 400, 40);
+    transferBalanceLabel.setBounds(730, 130, 350, 100);
+    nationalIDTransferLabel.setBounds(40, 140 + x, 160, 40);
+    nationalIdTransferTextField.setBounds(200, 140 + x, 400, 40);
+    submitTransferButton.setBounds(200, 190 + x, 400, 50);
+
+    amountTransferLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    amountTransferLabel.setForeground(new java.awt.Color(161, 194, 255));
+    descriptionTransferLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    descriptionTransferLabel.setForeground(new java.awt.Color(161, 194, 255));
+    nationalIDTransferLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    nationalIDTransferLabel.setForeground(new java.awt.Color(161, 194, 255));
+
+    amountTransferTextField.setForeground(Color.WHITE);
+    amountTransferTextField.setBackground(new java.awt.Color(34, 45, 65));
+    amountTransferTextField.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    descriptionTransferTextField.setForeground(Color.WHITE);
+    descriptionTransferTextField.setBackground(new java.awt.Color(34, 45, 65));
+    descriptionTransferTextField.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    nationalIdTransferTextField.setForeground(Color.WHITE);
+    nationalIdTransferTextField.setBackground(new java.awt.Color(34, 45, 65));
+    nationalIdTransferTextField.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    transferTitleLabel.setFont(new Font("Arial Rounded MT bold", 45, 35));
+    transferTitleLabel.setForeground(Color.WHITE);
+    transferBalanceTitleLabel.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    transferBalanceTitleLabel.setForeground(Color.WHITE);
+    transferBalanceLabel.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    transferBalanceLabel.setForeground(new java.awt.Color(161, 194, 255));
+    transferBalanceLabel.setBackground(Color.WHITE);
+    submitTransferButton.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    submitTransferButton.setBackground(new java.awt.Color(161, 194, 255));
+
+    // END OF TRANSFER PANEL
+    // transferPanel..............................................//
+    // Withdraw PANEL
+    // withdrawPanel...................................................//
+
+    withdrawPanel.setBackground(new java.awt.Color(63, 63, 63));
+    withdrawPanel.setLayout(null);
+    withdrawPanel.add(withdrawTitleLabel);
+    withdrawPanel.add(submitWithdrawButton);
+    withdrawPanel.add(amountWithdrawLabel);
+    withdrawPanel.add(descriptionWithdrawLabel);
+    withdrawPanel.add(withdrawBalanceTitleLabel);
+    withdrawPanel.add(amountWithdrawTextField);
+    withdrawPanel.add(descriptionWithdrawTextField);
+    withdrawPanel.add(withdrawBalanceLabel);
+
+    withdrawTitleLabel.setBounds(260, 60, 400, 40);
+    amountWithdrawLabel.setBounds(40, 60 + x, 160, 40);
+    amountWithdrawTextField.setBounds(200, 60 + x, 400, 40);
+    withdrawBalanceTitleLabel.setBounds(710, 90, 350, 40);
+    descriptionWithdrawLabel.setBounds(40, 100 + x, 160, 40);
+    descriptionWithdrawTextField.setBounds(200, 100 + x, 400, 40);
+    withdrawBalanceLabel.setBounds(730, 130, 350, 100);
+    submitWithdrawButton.setBounds(200, 190 + x, 400, 50);
+
+    amountWithdrawLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    amountWithdrawLabel.setForeground(new java.awt.Color(161, 194, 255));
+    descriptionWithdrawLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    descriptionWithdrawLabel.setForeground(new java.awt.Color(161, 194, 255));
+
+    amountWithdrawTextField.setForeground(Color.WHITE);
+    amountWithdrawTextField.setBackground(new java.awt.Color(34, 45, 65));
+    amountWithdrawTextField.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    descriptionWithdrawTextField.setForeground(Color.WHITE);
+    descriptionWithdrawTextField.setBackground(new java.awt.Color(34, 45, 65));
+    descriptionWithdrawTextField.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    withdrawTitleLabel.setFont(new Font("Arial Rounded MT bold", 45, 35));
+    withdrawTitleLabel.setForeground(Color.WHITE);
+    withdrawBalanceTitleLabel.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    withdrawBalanceTitleLabel.setForeground(Color.WHITE);
+    withdrawBalanceLabel.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    withdrawBalanceLabel.setForeground(new java.awt.Color(161, 194, 255));
+    withdrawBalanceLabel.setBackground(Color.WHITE);
+    submitWithdrawButton.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    submitWithdrawButton.setBackground(new java.awt.Color(161, 194, 255));
+
+    // END OF Withdraw PANEL
+    // withdrawPanel..............................................//
+
+    // END OF TRANSICTIONS PANELS//...............................................//
+    transactionPanel.setLayout(null);
+    transactionPanel.add(pbuttons);
+    transactionPanel.add(transactionCardLayout);
+    pbuttons.setBounds(0, 0, 1000, 50);
+    transactionCardLayout.setBounds(0, 50, 1000, 512);
+
+    transactionCardLayout.setLayout(card2);
+    pbuttons.add(depositButton);
+    pbuttons.add(transferButton);
+    pbuttons.add(withdrawButton);
+    pbuttons.setLayout(null);
+    depositButton.setBounds(0, 0, 333, 50);
+    transferButton.setBounds(333, 0, 333, 50);
+    withdrawButton.setBounds(666, 0, 333, 50);
+
+    depositButton.setBackground(new java.awt.Color(63, 63, 63));
+    transferButton.setBackground(new java.awt.Color(63, 63, 63));
+    withdrawButton.setBackground(new java.awt.Color(63, 63, 63));
+    depositButton.setForeground(Color.WHITE);
+    transferButton.setForeground(Color.WHITE);
+    withdrawButton.setForeground(Color.WHITE);
+    depositButton.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    transferButton.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    withdrawButton.setFont(new Font("Arial Rounded MT bold", 30, 20));
+
+    transactionCardLayout.add(depositPanel, "5");
+    transactionCardLayout.add(transferPanel, "6");
+    transactionCardLayout.add(withdrawPanel, "7");
+    card2.show(transactionCardLayout, "1");
+
+    depositButton.addActionListener(new ActionListener() {
       @Override
-      public void focusLost(FocusEvent fe) {
-        // tamdp.setText("Enter The Amount");
+      public void actionPerformed(ActionEvent ae) {
+        card2.show(transactionCardLayout, "5");
       }
     });
-    //////////////////////////////////
-    amountTextField.addFocusListener(new FocusListener() {
-      @Override
-      public void focusGained(FocusEvent e) {
-        amountTextField.setText("");
-      }
 
+    transferButton.addActionListener(new ActionListener() {
       @Override
-      public void focusLost(FocusEvent fe) {
-
+      public void actionPerformed(ActionEvent ae) {
+        card2.show(transactionCardLayout, "6");
       }
     });
-    //////////////////////////////////
-    descriptionTextField.addFocusListener(new FocusListener() {
+    withdrawButton.addActionListener(new ActionListener() {
       @Override
-      public void focusGained(FocusEvent e) {
-        descriptionTextField.setText("");
-      }
-
-      @Override
-      public void focusLost(FocusEvent fe) {
-
+      public void actionPerformed(ActionEvent ae) {
+        card2.show(transactionCardLayout, "7");
       }
     });
-    //////////////////////////////////
-    payForTextField.addFocusListener(new FocusListener() {
-      @Override
-      public void focusGained(FocusEvent e) {
-        payForTextField.setText("");
-      }
 
-      @Override
-      public void focusLost(FocusEvent fe) {
+    // CREDIT PANEL creditPanel..................................................//
 
-      }
-    });
-    //////////////////////////////////
-    tdsdp.addFocusListener(new FocusListener() {
-      @Override
-      public void focusGained(FocusEvent e) {
-        tdsdp.setText("");
-      }
+    creditPanel.setBackground(new java.awt.Color(34, 45, 65));
+    creditPanel.setLayout(null);
+    creditPanel.add(creditTitleLabel);
+    creditPanel.add(submitCreditButton);
+    creditPanel.add(amountCreditLabel);
+    creditPanel.add(descriptionCreditLabel);
+    creditPanel.add(payForCreditLabel);
+    creditPanel.add(creditBalanceTitleLabel);
+    creditPanel.add(amountCreditTextField);
+    creditPanel.add(descriptionCreditTextField);
+    creditPanel.add(payForCreditTextField);
+    creditPanel.add(creditBalanceLabel);
+    creditPanel.add(creditexpireLabel);
 
-      @Override
-      public void focusLost(FocusEvent fe) {
+    creditTitleLabel.setBounds(260, 60, 400, 40);
+    amountCreditLabel.setBounds(40, 60 + x, 160, 40);
+    amountCreditTextField.setBounds(200, 60 + x, 400, 40);
+    creditBalanceTitleLabel.setBounds(650, 90, 350, 40);
+    descriptionCreditLabel.setBounds(40, 100 + x, 160, 40);
+    descriptionCreditTextField.setBounds(200, 100 + x, 400, 40);
+    creditBalanceLabel.setBounds(730, 130, 350, 100);
+    payForCreditLabel.setBounds(40, 140 + x, 160, 40);
+    payForCreditTextField.setBounds(200, 140 + x, 400, 40);
+    creditexpireLabel.setBounds(690, 200, 350, 100);
+    submitCreditButton.setBounds(200, 190 + x, 400, 50);
 
-      }
-    });
-    //////////////////////////////////
-    tamtr.addFocusListener(new FocusListener() {
-      @Override
-      public void focusGained(FocusEvent e) {
-        tamtr.setText("");
-      }
+    amountCreditLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    amountCreditLabel.setForeground(new java.awt.Color(161, 194, 255));
+    descriptionCreditLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    descriptionCreditLabel.setForeground(new java.awt.Color(161, 194, 255));
+    payForCreditLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    payForCreditLabel.setForeground(new java.awt.Color(161, 194, 255));
 
-      @Override
-      public void focusLost(FocusEvent fe) {
+    amountCreditTextField.setForeground(Color.WHITE);
+    amountCreditTextField.setBackground(new java.awt.Color(34, 45, 65));
+    amountCreditTextField.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    descriptionCreditTextField.setForeground(Color.WHITE);
+    descriptionCreditTextField.setBackground(new java.awt.Color(34, 45, 65));
+    descriptionCreditTextField.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    payForCreditTextField.setForeground(Color.WHITE);
+    payForCreditTextField.setBackground(new java.awt.Color(34, 45, 65));
+    payForCreditTextField.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    creditTitleLabel.setFont(new Font("Arial Rounded MT bold", 45, 35));
+    creditTitleLabel.setForeground(Color.WHITE);
+    creditBalanceTitleLabel.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    creditBalanceTitleLabel.setForeground(Color.WHITE);
+    creditBalanceLabel.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    creditBalanceLabel.setForeground(new java.awt.Color(161, 194, 255));
+    creditBalanceLabel.setBackground(Color.WHITE);
+    submitCreditButton.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    submitCreditButton.setBackground(new java.awt.Color(161, 194, 255));
+    creditexpireLabel.setFont(new Font("Arial Rounded MT bold", 40, 30));
+    creditexpireLabel.setForeground(new java.awt.Color(161, 194, 255));
+    creditexpireLabel.setBackground(Color.WHITE);
 
-      }
-    });
-    //////////////////////////////////
-    tdstr.addFocusListener(new FocusListener() {
-      @Override
-      public void focusGained(FocusEvent e) {
-        tdstr.setText("");
-      }
+    // END OF CREDIT PANEL
+    // creditPanel.............................................//
 
-      @Override
-      public void focusLost(FocusEvent fe) {
-
-      }
-    });
-    //////////////////////////////////
-    tnitr.addFocusListener(new FocusListener() {
-      @Override
-      public void focusGained(FocusEvent e) {
-        tnitr.setText("");
-      }
-
-      @Override
-      public void focusLost(FocusEvent fe) {
-
-      }
-    });
-    //////////////////////////////////
-    tamwd.addFocusListener(new FocusListener() {
-      @Override
-      public void focusGained(FocusEvent e) {
-        tamwd.setText("");
-      }
-
-      @Override
-      public void focusLost(FocusEvent fe) {
-
-      }
-    });
-    //////////////////////////////////
-    tdswd.addFocusListener(new FocusListener() {
-      @Override
-      public void focusGained(FocusEvent e) {
-        tdswd.setText("");
-      }
-
-      @Override
-      public void focusLost(FocusEvent fe) {
-
-      }
-    });
-    // END OF EMPTY THE TEXT
-    // FIELDS......................................................//////
   }
 
 }

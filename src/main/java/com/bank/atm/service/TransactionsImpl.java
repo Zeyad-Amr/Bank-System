@@ -6,7 +6,7 @@ import com.bank.atm.dao.ProcessDao;
 import com.bank.atm.model.Account;
 import com.bank.atm.model.CashProcess;
 
-public class PersonalTransactionImpl implements PersonalTransaction {
+public class TransactionsImpl implements Transactions {
 
         @Override
         public void deposit(Account account, double amount, String description) {

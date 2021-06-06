@@ -2,7 +2,7 @@ package com.bank.atm.service;
 
 import com.bank.atm.model.Account;
 
-public interface PersonalTransaction {
+public interface Transactions {
 
     void deposit(Account account, double amount, String description);
 
