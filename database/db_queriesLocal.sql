@@ -40,8 +40,8 @@ CREATE TABLE processes(
   creditBalance REAL,
     date DATE,
 description VARCHAR
-(30),
+(1000),
 payTo VARCHAR
-(30)
+(1000)
  
 );

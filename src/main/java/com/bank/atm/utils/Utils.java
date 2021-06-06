@@ -1,6 +1,7 @@
 package com.bank.atm.utils;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class Utils {
@@ -17,4 +18,9 @@ public class Utils {
         return Integer.toString(rand1) + Integer.toString(rand2);
     }
 
+    public static LocalDate toLocaldate(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        return localDate;
+    }
 }

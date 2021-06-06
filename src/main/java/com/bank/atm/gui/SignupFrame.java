@@ -13,6 +13,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class SignupFrame {
@@ -21,36 +22,43 @@ public class SignupFrame {
 
   // IMP Create Variables For New USER....//
 
-  String NationalId;
+  String NationalId_String;
   String Name;
-  String PhoneNumber;
+  String PhoneNumber_String;
   String Password;
-  String InitialBalance;
+  String InitialBalance_String;
   // String CreditBalance = 0.8 * InitialBalance;
   Boolean Gender;
+  Boolean Account_Type;
 
   // Create Variables.......//
   JPanel p1 = new JPanel();
-  JLabel LSU = new JLabel("Sign UP");
-  JButton b1 = new JButton("  Sign UP  ");
-  JTextField t1 = new JTextField("National ID");
-  JLabel L1 = new JLabel("National ID");
-  JTextField t2 = new JTextField("Name");
-  JLabel L2 = new JLabel("Name");
-  JTextField t3 = new JTextField("Phone Number");
-  JLabel L3 = new JLabel("Phone Number");
-  JPasswordField t4 = new JPasswordField("Password");
-  JLabel L4 = new JLabel("PassWord");
-  JTextField t5 = new JTextField("Initial Balance");
-  JLabel L5 = new JLabel("Initial Balance");
-  JTextField t6 = new JTextField("BirthDate");
-  JLabel L6 = new JLabel("BirthDate");
-  JLabel L7 = new JLabel("Gender");
-  JRadioButton r1 = new JRadioButton("Male");
-  JRadioButton r2 = new JRadioButton("Female");
-  ButtonGroup g1 = new ButtonGroup();
-  JLabel L8 = new JLabel("already have an account?");
-  JButton b2 = new JButton("  Login  ");
+  JLabel SignUPLabel = new JLabel("Sign UP");
+  JButton SignUPButton = new JButton("  Sign UP  ");
+  JTextField NationalIDTextField = new JTextField("National ID");
+  JLabel NationalIDLabel = new JLabel("National ID");
+  JTextField NameTextField = new JTextField("Name");
+  JLabel NameLabel = new JLabel("Name");
+  JTextField PhoneNumberTextField = new JTextField("Phone Number");
+  JLabel PhoneNumberLabel = new JLabel("Phone Number");
+  JPasswordField PasswordTextField = new JPasswordField("Password");
+  JLabel PasswordLabel = new JLabel("Password");
+  JTextField InitialBalanceTextField = new JTextField("Initial Balance");
+  JLabel InitialBalanceLabel = new JLabel("Initial Balance");
+  JTextField BirthDateTextField = new JTextField("Birthdate");
+  JLabel BirthDateLabel = new JLabel("Birthdate");
+  JLabel GenderLabel = new JLabel("Gender");
+  JRadioButton MaleRadioButton = new JRadioButton("Male");
+  JRadioButton FeMaleRadioButton = new JRadioButton("Female");
+  ButtonGroup GenderButtonGroup = new ButtonGroup();
+  // For Type Of ACCOUNT//
+  JLabel Acocunt_Type_Label = new JLabel("Account Type");
+  JRadioButton VIP_RadioButton = new JRadioButton("VIP");
+  JRadioButton Personal_RadioButton = new JRadioButton("Personal");
+  ButtonGroup Acocunt_Type_ButtonGroup = new ButtonGroup();
+
+  JLabel AlreadyhaveanaccountLabel = new JLabel("Already have an account?");
+  JButton LoginButton = new JButton("  Login  ");
   // END VARIABLES.........................................//
   // SET IMAGE......................//
   ImageIcon image1 = new ImageIcon(getClass().getResource("../images/Login.png"));
@@ -78,144 +86,191 @@ public class SignupFrame {
     p1.setBackground(Color.darkGray);
     p1.setLayout(null);
     // 1 ADD TO PANEL.............//
-    p1.add(LSU);
-    p1.add(L1);
-    p1.add(L2);
-    p1.add(L3);
-    p1.add(L4);
-    p1.add(L5);
-    p1.add(L6);
-    p1.add(L7);
-    p1.add(L8);
-    p1.add(t1);
-    p1.add(t2);
-    p1.add(t3);
-    p1.add(t4);
-    p1.add(t5);
-    p1.add(t6);
-    p1.add(b1);
-    p1.add(b2);
-    p1.add(r1);
-    p1.add(r2);
-    g1.add(r1);
-    g1.add(r2);
+    p1.add(SignUPLabel);
+    p1.add(NationalIDLabel);
+    p1.add(NameLabel);
+    p1.add(PhoneNumberLabel);
+    p1.add(PasswordLabel);
+    p1.add(InitialBalanceLabel);
+    p1.add(BirthDateLabel);
+    p1.add(GenderLabel);
+    p1.add(AlreadyhaveanaccountLabel);
+    p1.add(NationalIDTextField);
+    p1.add(NameTextField);
+    p1.add(PhoneNumberTextField);
+    p1.add(PasswordTextField);
+    p1.add(InitialBalanceTextField);
+    p1.add(BirthDateTextField);
+    p1.add(SignUPButton);
+    p1.add(LoginButton);
+    p1.add(MaleRadioButton);
+    p1.add(FeMaleRadioButton);
+    GenderButtonGroup.add(MaleRadioButton);
+    GenderButtonGroup.add(FeMaleRadioButton);
+
+    p1.add(Acocunt_Type_Label);
+    p1.add(VIP_RadioButton);
+    p1.add(Personal_RadioButton);
+    Acocunt_Type_ButtonGroup.add(VIP_RadioButton);
+    Acocunt_Type_ButtonGroup.add(Personal_RadioButton);
     // 2 LAYOUT OF THE PANEL.....................//
-    LSU.setBounds(155, 15, 250, 70);
-    L1.setBounds(90, 95, 250, 30);
-    t1.setBounds(90, 125, 250, 20);
-    L2.setBounds(90, 150, 250, 30);
-    t2.setBounds(90, 180, 250, 20);
-    L3.setBounds(90, 205, 250, 20);
-    t3.setBounds(90, 235, 250, 20);
-    L4.setBounds(90, 260, 250, 30);
-    t4.setBounds(90, 290, 250, 20);
-    L5.setBounds(90, 315, 250, 30);
-    t5.setBounds(90, 345, 250, 20);
-    L6.setBounds(90, 370, 250, 30);
-    t6.setBounds(90, 400, 250, 20);
-    L7.setBounds(90, 425, 250, 30);
-    r1.setBounds(90, 455, 115, 20);
-    r2.setBounds(225, 455, 115, 20);
-    b1.setBounds(90, 485, 250, 60);
-    L8.setBounds(60, 570, 250, 35);
-    b2.setBounds(300, 570, 150, 35);
+    int x = 30;
+    int y = 20;
+
+    SignUPLabel.setBounds(155, 3, 250, 70);
+    NationalIDLabel.setBounds(90, 95 - x, 250, 30);
+    NationalIDTextField.setBounds(90, 125 - x, 250, 20);
+    NameLabel.setBounds(90, 150 - x, 250, 30);
+    NameTextField.setBounds(90, 180 - x, 250, 20);
+    PhoneNumberLabel.setBounds(90, 205 - x, 250, 20);
+    PhoneNumberTextField.setBounds(90, 235 - x, 250, 20);
+    PasswordLabel.setBounds(90, 260 - x, 250, 30);
+    PasswordTextField.setBounds(90, 290 - x, 250, 20);
+    Acocunt_Type_Label.setBounds(90, 285, 250, 30);
+    VIP_RadioButton.setBounds(90, 315, 115, 20);
+    Personal_RadioButton.setBounds(225, 315, 115, 20);
+
+    InitialBalanceLabel.setBounds(90, 315 + y, 250, 30);
+    InitialBalanceTextField.setBounds(90, 345 + y, 250, 20);
+    BirthDateLabel.setBounds(90, 370 + y, 250, 30);
+    BirthDateTextField.setBounds(90, 400 + y, 250, 20);
+    GenderLabel.setBounds(90, 425 + y, 250, 30);
+    MaleRadioButton.setBounds(90, 455 + y, 115, 20);
+    FeMaleRadioButton.setBounds(225, 455 + y, 115, 20);
+    SignUPButton.setBounds(90, 530, 250, 40);
+    AlreadyhaveanaccountLabel.setBounds(60, 580, 250, 35);
+    LoginButton.setBounds(300, 580, 150, 35);
     // COLORS AND FONT............//
     // FONT.........................//
-    LSU.setFont(new Font("Arial Rounded MT bold", 70, 40));
-    L1.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    L2.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    L3.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    L4.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    L5.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    L6.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    L7.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    b1.setFont(new Font("Arial Rounded MT bold", 40, 25));
-    L8.setFont(new Font("Arial Rounded MT bold", 40, 15));
-    b2.setFont(new Font("Arial Rounded MT bold", 40, 15));
+    SignUPLabel.setFont(new Font("Arial Rounded MT bold", 70, 40));
+    NationalIDLabel.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    NameLabel.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    PhoneNumberLabel.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    PasswordLabel.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    InitialBalanceLabel.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    BirthDateLabel.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    GenderLabel.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    Acocunt_Type_Label.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    SignUPButton.setFont(new Font("Arial Rounded MT bold", 40, 25));
+    AlreadyhaveanaccountLabel.setFont(new Font("Arial Rounded MT bold", 40, 15));
+    LoginButton.setFont(new Font("Arial Rounded MT bold", 40, 15));
     // END OF FONT.........................//
     p1.setBackground(new java.awt.Color(34, 45, 65));
-    LSU.setForeground(Color.WHITE);
-    L1.setForeground(Color.WHITE);
-    L2.setForeground(Color.WHITE);
-    L3.setForeground(Color.WHITE);
-    L4.setForeground(Color.WHITE);
-    L5.setForeground(Color.WHITE);
-    L6.setForeground(Color.WHITE);
-    L7.setForeground(Color.WHITE);
-    L8.setForeground(Color.WHITE);
-    t1.setBackground(Color.WHITE);
-    t2.setBackground(Color.WHITE);
-    t3.setBackground(Color.WHITE);
-    t4.setBackground(Color.WHITE);
-    t5.setBackground(Color.WHITE);
-    t6.setBackground(Color.WHITE);
-    // t1.setBackground(new java.awt.Color(34,45,65));
-    b1.setBackground(new java.awt.Color(161, 194, 255));
-    b1.setForeground(new java.awt.Color(35, 45, 65));
-    b2.setBackground(new java.awt.Color(161, 194, 255));
-    b2.setForeground(new java.awt.Color(35, 45, 65));
+    SignUPLabel.setForeground(Color.WHITE);
+    NationalIDLabel.setForeground(Color.WHITE);
+    NameLabel.setForeground(Color.WHITE);
+    PhoneNumberLabel.setForeground(Color.WHITE);
+    PasswordLabel.setForeground(Color.WHITE);
+    InitialBalanceLabel.setForeground(Color.WHITE);
+    BirthDateLabel.setForeground(Color.WHITE);
+    GenderLabel.setForeground(Color.WHITE);
+    Acocunt_Type_Label.setForeground(Color.WHITE);
+    AlreadyhaveanaccountLabel.setForeground(Color.WHITE);
+    NationalIDTextField.setBackground(Color.WHITE);
+    NameTextField.setBackground(Color.WHITE);
+    PhoneNumberTextField.setBackground(Color.WHITE);
+    PasswordTextField.setBackground(Color.WHITE);
+    InitialBalanceTextField.setBackground(Color.WHITE);
+    BirthDateTextField.setBackground(Color.WHITE);
+    // NationalIDTextField.setBackground(new java.awt.Color(34,45,65));
+    SignUPButton.setBackground(new java.awt.Color(161, 194, 255));
+    SignUPButton.setForeground(new java.awt.Color(35, 45, 65));
+    LoginButton.setBackground(new java.awt.Color(161, 194, 255));
+    LoginButton.setForeground(new java.awt.Color(35, 45, 65));
 
     // ADD TO FRAME................//
     signupFrame.add(p1);
     signupFrame.add(img);
 
     // ACTIONS..............//
-    // b1.addActionListener(add);
+    // SignUPButton.addActionListener(add);
 
-    r1.addActionListener(new ActionListener() {
+    MaleRadioButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == r1) {
+        if (ae.getSource() == MaleRadioButton) {
           Gender = true;
         }
       }
     });
-    r2.addActionListener(new ActionListener() {
+    FeMaleRadioButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == r2) {
+        if (ae.getSource() == FeMaleRadioButton) {
           Gender = false;
         }
       }
     });
-    /// VVVIIIIIIIPPPPPPPPPPP///
-    b1.addActionListener(new ActionListener() {
+    VIP_RadioButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == b1) {
+        if (ae.getSource() == VIP_RadioButton) {
+          Account_Type = true;
+        }
+      }
+    });
+    Personal_RadioButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == Personal_RadioButton) {
+          Account_Type = false;
+        }
+      }
+    });
+    /// VVVIIIIIIIPPPPPPPPPPP///
+    SignUPButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == SignUPButton) {
 
-          NationalId = t1.getText();
-          Name = t2.getText();
-          PhoneNumber = t3.getText();
-          Password = t4.getText();
-          InitialBalance = t5.getText();
-
-          System.out.println("NationalId=" + NationalId);
-          System.out.println("Name=" + Name);
-          System.out.println("PhoneNumber=" + PhoneNumber);
-          System.out.println("Password=" + Password);
-          System.out.println("InitialBalance=" + InitialBalance);
-          // reurtn BIRTHDATE
-          String BirthDate = t6.getText();
+          // Get Values From Text Fields............
+          Name = NameTextField.getText();
+          PhoneNumber_String = PhoneNumberTextField.getText();
+          Password = PasswordTextField.getText();
+          InitialBalance_String = InitialBalanceTextField.getText();
+          String BirthDate = BirthDateTextField.getText();
+          // Exceptions For National ID//
           try {
-            Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(BirthDate);
-            System.out.println(BirthDate + "\t" + date1);
+            long nationalId_Long = Long.parseLong(NationalIDTextField.getText());
+            NationalId_String = NationalIDTextField.getText();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+            LocalDate date1 = LocalDate.parse(BirthDate, formatter);
+
+            if (nationalId_Long <= 0) {
+              JOptionPane.showMessageDialog(signupFrame, "Enter Positive National ID");
+            } else {
+              if (NationalId_String.length() != 14) {
+                JOptionPane.showMessageDialog(signupFrame, "National ID Should be 14 Numbers");
+              } else {
+                System.out.println(nationalId_Long);
+                System.out.println(BirthDate + "\t" + date1);
+
+                System.out.println("NationalId=" + NationalId_String);
+                System.out.println("Name=" + Name);
+                System.out.println("PhoneNumber=" + PhoneNumber_String);
+                System.out.println("Password=" + Password);
+                System.out.println("InitialBalance=" + InitialBalance_String);
+                System.out.println("Gender=" + Gender);
+                System.out.println("Account_Type=" + Account_Type);
+                Account account = new Account(0, Name, NationalId_String, Password, LocalDate.now(), PhoneNumber_String,
+                    Double.parseDouble(InitialBalance_String), Utils.getRandomNumber(11111111, 99999999), Gender);
+
+                Auth.signUp(account);
+                JOptionPane.showMessageDialog(signupFrame, "Sign Up Successfully :)");
+              }
+            }
+          } catch (NumberFormatException a) {
+            JOptionPane.showMessageDialog(signupFrame, "Enter Numbers Only For National ID");
           } catch (Exception e) {
             JOptionPane.showMessageDialog(signupFrame,
                 "Please Enter Date in Numbers By this form only \n  \t Day/Month/Year ");
           }
-          // End of return Birthdate
-          System.out.println("Gender=" + Gender);
-          Account account = new Account(0, Name, NationalId, Password, LocalDate.now(), PhoneNumber,
-              Double.parseDouble(InitialBalance), Utils.getRandomNumber(11111111, 99999999), Gender);
-
-          Auth.signUp(account);
         }
       }
     });
     // End of VVVVIIIIIIIPPPP//
 
-    b2.addActionListener(new ActionListener() {
+    LoginButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent ae) {
         LoginFrame Login = new LoginFrame();
@@ -226,64 +281,127 @@ public class SignupFrame {
     // END OF ACTIONS............//
     // EMPTY THE TEXT
     // FIELDS......................................................///////////
-    t1.addFocusListener(new FocusListener() {
+    NationalIDTextField.addFocusListener(new FocusListener() {
       @Override
       public void focusGained(FocusEvent e) {
-        t1.setText("");
+        if ("National ID".equals(NationalIDTextField.getText())) {
+          NationalIDTextField.setText("");
+        }
+      }
+
+      @Override
+      public void focusLost(FocusEvent fe) {
+        try {
+          long nationalId_Long = Long.parseLong(NationalIDTextField.getText());
+          NationalId_String = NationalIDTextField.getText();
+          if (nationalId_Long <= 0) {
+            JOptionPane.showMessageDialog(signupFrame, "Enter Positive National ID");
+            NationalIDTextField.setText("");
+          } else {
+            if (NationalId_String.length() != 14) {
+              JOptionPane.showMessageDialog(signupFrame, "National ID Should be 14 Numbers");
+              NationalIDTextField.setText("");
+            }
+          }
+        } catch (NumberFormatException a) {
+          JOptionPane.showMessageDialog(signupFrame, "Enter Numbers Only For National ID");
+          NationalIDTextField.setText("");
+        }
+      }
+    });
+    NameTextField.addFocusListener(new FocusListener() {
+      @Override
+      public void focusGained(FocusEvent e) {
+        if ("Name".equals(NameTextField.getText())) {
+          NameTextField.setText("");
+        }
       }
 
       @Override
       public void focusLost(FocusEvent fe) {
       }
     });
-    t2.addFocusListener(new FocusListener() {
+    PhoneNumberTextField.addFocusListener(new FocusListener() {
       @Override
       public void focusGained(FocusEvent e) {
-        t2.setText("");
+        if ("Phone Number".equals(PhoneNumberTextField.getText())) {
+          PhoneNumberTextField.setText("");
+        }
+      }
+
+      @Override
+      public void focusLost(FocusEvent fe) {
+        try {
+          int PhoneNumber_Integer = Integer.parseInt(PhoneNumberTextField.getText());
+          if (PhoneNumber_Integer <= 0) {
+            JOptionPane.showMessageDialog(signupFrame, "Enter Positive PhoneNumber");
+            PhoneNumberTextField.setText("");
+          } else {
+            System.out.println(PhoneNumber_Integer);
+          }
+        } catch (NumberFormatException a) {
+          JOptionPane.showMessageDialog(signupFrame, "Enter Numbers Only For PhoneNumber");
+          PhoneNumberTextField.setText("");
+        }
+      }
+    });
+    PasswordTextField.addFocusListener(new FocusListener() {
+      @Override
+      public void focusGained(FocusEvent e) {
+        if ("Password".equals(PasswordTextField.getText())) {
+          PasswordTextField.setText("");
+        }
       }
 
       @Override
       public void focusLost(FocusEvent fe) {
       }
     });
-    t3.addFocusListener(new FocusListener() {
+    InitialBalanceTextField.addFocusListener(new FocusListener() {
       @Override
       public void focusGained(FocusEvent e) {
-        t3.setText("");
+        if ("Initial Balance".equals(InitialBalanceTextField.getText())) {
+          InitialBalanceTextField.setText("");
+        }
       }
 
       @Override
       public void focusLost(FocusEvent fe) {
+        try {
+          int InitialBalance_Integer = Integer.parseInt(InitialBalanceTextField.getText());
+          if (InitialBalance_Integer <= 0) {
+            JOptionPane.showMessageDialog(signupFrame, "Enter Positive InitialBalance");
+            InitialBalanceTextField.setText("");
+          } else {
+            System.out.println(InitialBalance_Integer);
+          }
+        } catch (NumberFormatException a) {
+          JOptionPane.showMessageDialog(signupFrame, "Enter Numbers Only For InitialBalance");
+          InitialBalanceTextField.setText("");
+        }
       }
     });
-    t4.addFocusListener(new FocusListener() {
+    BirthDateTextField.addFocusListener(new FocusListener() {
       @Override
       public void focusGained(FocusEvent e) {
-        t4.setText("");
+        if ("Birthdate".equals(BirthDateTextField.getText())) {
+          BirthDateTextField.setText("");
+        }
       }
 
       @Override
       public void focusLost(FocusEvent fe) {
-      }
-    });
-    t5.addFocusListener(new FocusListener() {
-      @Override
-      public void focusGained(FocusEvent e) {
-        t5.setText("");
-      }
+        try {
+          String BirthDate = BirthDateTextField.getText();
+          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+          LocalDate date1 = LocalDate.parse(BirthDate, formatter);
 
-      @Override
-      public void focusLost(FocusEvent fe) {
-      }
-    });
-    t6.addFocusListener(new FocusListener() {
-      @Override
-      public void focusGained(FocusEvent e) {
-        t6.setText("");
-      }
-
-      @Override
-      public void focusLost(FocusEvent fe) {
+          System.out.println(BirthDate + "\t" + date1);
+        } catch (Exception e) {
+          JOptionPane.showMessageDialog(signupFrame,
+              "Please Enter Date in Numbers By this form only \n  \t Day/Month/Year ");
+          BirthDateTextField.setText("");
+        }
       }
     });
     // END OF EMPTY THE TEXT

@@ -19,14 +19,14 @@ public class LoginFrame {
   // END OF ACTIONS............//
   // Create Variables.......//
   JPanel p1 = new JPanel();
-  JTextField t1 = new JTextField("National ID");
-  JPasswordField t2 = new JPasswordField("Password");
-  JButton b1 = new JButton("  Login  ");
-  JButton b2 = new JButton("  Create New Account ");
-  JLabel L1 = new JLabel("NATIONAL ID");
-  JLabel L2 = new JLabel("PASSWORD");
-  JLabel L3 = new JLabel("Login");
-  JLabel L4 = new JLabel("New User");
+  JTextField NationalIDTextField = new JTextField("National ID");
+  JPasswordField PasswordTextField = new JPasswordField("Password");
+  JButton LoginButton = new JButton("  Login  ");
+  JButton Create_New_Account_Button = new JButton("  Create New Account ");
+  JLabel NATIONALIDLabel = new JLabel("NATIONAL ID");
+  JLabel PASSWORDLabel = new JLabel("PASSWORD");
+  JLabel LoginLabel = new JLabel("Login");
+  JLabel NewUserLabel = new JLabel("New User");
   // END VARIABLES.........................................//
   // SET IMAGE......................//
   ImageIcon image1 = new ImageIcon(getClass().getResource("../images/Login.png"));
@@ -52,75 +52,79 @@ public class LoginFrame {
     //// SET PANEL.....................//
     p1.setLayout(null);
     // 1 ADD TO PANEL.............//
-    p1.add(b1);
-    p1.add(b2);
-    p1.add(L1);
-    p1.add(L2);
-    p1.add(L3);
-    p1.add(L4);
-    p1.add(t1);
-    p1.add(t2);
+    p1.add(LoginButton);
+    p1.add(Create_New_Account_Button);
+    p1.add(NATIONALIDLabel);
+    p1.add(PASSWORDLabel);
+    p1.add(LoginLabel);
+    p1.add(NewUserLabel);
+    p1.add(NationalIDTextField);
+    p1.add(PasswordTextField);
     // 2 LAYOUT OF THE PANEL.....................//
     int x = 50;
-    L3.setBounds(170, 60, 150, 70);
+    LoginLabel.setBounds(170, 60, 150, 70);
 
-    L1.setBounds(60 + x, 160, 215, 30);
-    L2.setBounds(60 + x, 240, 215, 30);
+    NATIONALIDLabel.setBounds(60 + x, 160, 215, 30);
+    PASSWORDLabel.setBounds(60 + x, 240, 215, 30);
 
-    t1.setBounds(60 + x, 200, 215, 30);
-    t2.setBounds(60 + x, 275, 215, 30);
+    NationalIDTextField.setBounds(60 + x, 200, 215, 30);
+    PasswordTextField.setBounds(60 + x, 275, 215, 30);
 
-    b1.setBounds(70 + x, 340, 195, 40);
-    L4.setBounds(70, 560, 215, 40);
-    b2.setBounds(250, 560, 200, 40);
+    LoginButton.setBounds(70 + x, 340, 195, 40);
+    NewUserLabel.setBounds(70, 560, 215, 40);
+    Create_New_Account_Button.setBounds(250, 560, 200, 40);
     // COLORS AND FONT............//
     // FONT.........................//
-    L3.setFont(new Font("Arial Rounded MT bold", 70, 40));
-    L2.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    L1.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    L4.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    LoginLabel.setFont(new Font("Arial Rounded MT bold", 70, 40));
+    PASSWORDLabel.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    NATIONALIDLabel.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    NewUserLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
     // END OF FONT.........................//
 
     // COLORS.................................//
     p1.setBackground(new java.awt.Color(34, 45, 65));
 
-    L1.setForeground(Color.WHITE);
-    L2.setForeground(Color.WHITE);
-    L3.setForeground(Color.WHITE);
-    L4.setForeground(Color.WHITE);
+    NATIONALIDLabel.setForeground(Color.WHITE);
+    PASSWORDLabel.setForeground(Color.WHITE);
+    LoginLabel.setForeground(Color.WHITE);
+    NewUserLabel.setForeground(Color.WHITE);
 
-    t1.setBackground(new java.awt.Color(34, 45, 65));
-    t2.setBackground(new java.awt.Color(34, 45, 65));
+    NationalIDTextField.setBackground(new java.awt.Color(34, 45, 65));
+    PasswordTextField.setBackground(new java.awt.Color(34, 45, 65));
 
-    t1.setForeground(Color.WHITE);
-    t2.setForeground(Color.WHITE);
+    NationalIDTextField.setForeground(Color.WHITE);
+    PasswordTextField.setForeground(Color.WHITE);
 
-    b1.setBackground(new java.awt.Color(161, 194, 255));
-    b2.setBackground(new java.awt.Color(161, 194, 255));
+    LoginButton.setBackground(new java.awt.Color(161, 194, 255));
+    Create_New_Account_Button.setBackground(new java.awt.Color(161, 194, 255));
     // END OF COLORS.................................//
     // ADD TO FRAME................//
     loginFrame.add(p1);
     loginFrame.add(img);
     // ACTIONS..............//
-    b1.addActionListener(b);
-    b2.addActionListener(b);
+    LoginButton.addActionListener(b);
+    Create_New_Account_Button.addActionListener(b);
     // END OF ACTIONS............//
     // EMPTY THE TEXT
     // FIELDS......................................................///////////
-    t1.addFocusListener(new FocusListener() {
+    NationalIDTextField.addFocusListener(new FocusListener() {
       @Override
       public void focusGained(FocusEvent e) {
-        t1.setText("");
+        if ("National ID".equals(NationalIDTextField.getText())) {
+          NationalIDTextField.setText("");
+        }
       }
 
       @Override
       public void focusLost(FocusEvent fe) {
       }
     });
-    t2.addFocusListener(new FocusListener() {
+    PasswordTextField.addFocusListener(new FocusListener() {
       @Override
       public void focusGained(FocusEvent e) {
-        t2.setText("");
+        if ("Password".equals(PasswordTextField.getText())) {
+          PasswordTextField.setText("");
+        }
       }
 
       @Override
@@ -135,19 +139,36 @@ public class LoginFrame {
   private class BL implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
+      if (e.getSource() == LoginButton) {
 
-      if (e.getSource() == b1) {
-        String nationalId = t1.getText();
-        String password = t2.getText();
-        System.out.println(nationalId + "  " + password);
-        Account account = Auth.login(nationalId, password);
-        if (account != null) {
-          new AccountFrame(account);
-          loginFrame.dispose();
+        // For Login Button//
+        String password = PasswordTextField.getText();
+        try {
+          long nationalId_Integer = Long.parseLong(NationalIDTextField.getText());
+          String nationalId_String = NationalIDTextField.getText();
+          if (nationalId_Integer <= 0) {
+            JOptionPane.showMessageDialog(loginFrame, "Enter Positive National ID");
+          } else {
+            if (nationalId_String.length() != 14) {
+              JOptionPane.showMessageDialog(loginFrame, "National ID Should be 14 Numbers");
+            } else {
+              System.out.println(nationalId_Integer);
+              Account account = Auth.login(nationalId_String, password);
+              if (account != null) {
+                // JOptionPane.showMessageDialog(loginFrame, "Loading...");
+                new AccountFrame(account);
+                loginFrame.dispose();
+                System.out.println(nationalId_String + "  " + password);
+              }
+            }
+          }
+        } catch (NumberFormatException a) {
+          JOptionPane.showMessageDialog(loginFrame, "Enter Numbers Only For National ID");
         }
-      }
 
-      if (e.getSource() == b2) {
+      }
+      // For Vreate New Account Button//
+      if (e.getSource() == Create_New_Account_Button) {
         SignupFrame create = new SignupFrame();
         loginFrame.dispose();
       }
