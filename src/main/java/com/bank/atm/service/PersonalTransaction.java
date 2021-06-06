@@ -1,7 +1,6 @@
 package com.bank.atm.service;
 
 import com.bank.atm.model.Account;
-import com.bank.atm.model.CashProcess;
 
 public interface PersonalTransaction {
 

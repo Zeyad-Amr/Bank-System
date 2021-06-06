@@ -1,6 +1,6 @@
 package com.bank.atm.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class CashProcess {
     private int id;
@@ -10,13 +10,13 @@ public class CashProcess {
     private String process;
     private double balance;
     private double creditBalance;
-    private Date date;
+    private LocalDate date;
     private String description;
     private String payTo;
 
     // **************** Custom Constructor ****************//
     public CashProcess(int id, String name, String nationalId, double amount, String process, double balance,
-            double creditBalance, Date date, String description, String payTo) {
+            double creditBalance, LocalDate date, String description, String payTo) {
         this.id = id;
         this.name = name;
         this.nationalId = nationalId;
@@ -94,11 +94,11 @@ public class CashProcess {
     }
 
     // **************** Date Setter and Getter ****************//
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

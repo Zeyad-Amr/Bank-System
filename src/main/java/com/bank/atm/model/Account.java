@@ -1,20 +1,20 @@
 package com.bank.atm.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Account {
     private int id;
     private String name;
     private String nationalId;
     private String password;
-    private Date birthday;
+    private LocalDate birthday;
     private String phone;
     private double balance;
     private double creditBalance;
     private String creditCardNumber;
     private double creditBalanceLimit;
-    private Date creditDate;
-    private Date creditEndDate;
+    private LocalDate creditDate;
+    private LocalDate creditEndDate;
     private Boolean status;
     private Boolean gender;
     private Boolean info;
@@ -24,9 +24,9 @@ public class Account {
     }
 
     // **************** Custom Constructor ****************//
-    public Account(int id, String name, String nationalId, String password, Date birthday, String phone, double balance,
-            double creditBalance, String creditCardNumber, double creditBalanceLimit, Date creditDate,
-            Date creditEndDate, Boolean status, Boolean gender, Boolean info) {
+    public Account(int id, String name, String nationalId, String password, LocalDate birthday, String phone,
+            double balance, double creditBalance, String creditCardNumber, double creditBalanceLimit,
+            LocalDate creditDate, LocalDate creditEndDate, Boolean status, Boolean gender, Boolean info) {
         this.id = id;
         this.name = name;
         this.nationalId = nationalId;
@@ -42,6 +42,40 @@ public class Account {
         this.status = status;
         this.gender = gender;
         this.info = info;
+
+    }
+
+    // **************** Custom 2 Constructor for Signing Up ****************//
+    public Account(int id, String name, String nationalId, String password, LocalDate birthday, String phone,
+            double balance, String creditCardNumber, Boolean gender) {
+        this.id = id;
+        this.name = name;
+        this.nationalId = nationalId;
+        this.password = password;
+        this.birthday = birthday;
+        this.phone = phone;
+        this.balance = balance;
+        this.creditCardNumber = creditCardNumber;
+        this.status = false;
+        this.gender = gender;
+        this.creditDate = LocalDate.now();
+
+        if (balance > 500000) {
+            // VIP Account
+            this.info = true;
+            this.creditBalance = 0.8 * balance;
+            this.creditBalanceLimit = 0.8 * balance;
+            this.creditEndDate = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonthValue() + 3,
+                    LocalDate.now().getDayOfMonth());
+
+        } else {
+            // Personal Account
+            this.info = false;
+            this.creditBalance = 0.6 * balance;
+            this.creditBalanceLimit = 0.6 * balance;
+            this.creditEndDate = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonthValue() + 2,
+                    LocalDate.now().getDayOfMonth());
+        }
 
     }
 
@@ -82,11 +116,11 @@ public class Account {
     }
 
     // **************** Birthday Setter and Getter ****************//
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
@@ -136,20 +170,20 @@ public class Account {
     }
 
     // **************** CreditDate Setter and Getter ****************//
-    public void setCreditDate(Date creditDate) {
+    public void setCreditDate(LocalDate creditDate) {
         this.creditDate = creditDate;
     }
 
-    public Date getCreditDate() {
+    public LocalDate getCreditDate() {
         return creditDate;
     }
 
     // **************** CreditEndDate Setter and Getter ****************//
-    public void setCreditEndDate(Date creditEndDate) {
+    public void setCreditEndDate(LocalDate creditEndDate) {
         this.creditEndDate = creditEndDate;
     }
 
-    public Date getCreditEndDate() {
+    public LocalDate getCreditEndDate() {
         return creditEndDate;
     }
 
@@ -162,14 +196,32 @@ public class Account {
         return status;
     }
 
-    // **************** Gender Setter and Getter ****************//
-    public Boolean getGender() {
-        return gender;
+    public String getStatusAsString() {
+        if (status == true) {
+            return "Indebted";
+        } else {
+            return "Not indebted";
+        }
     }
+
+    // **************** Gender Setter and Getter ****************//
 
     public void setGender(Boolean gender) {
         this.gender = gender;
     }
+
+    public Boolean getGender() {
+        return gender;
+    }
+
+    public String getGenderAsString() {
+        if (gender == true) {
+            return "Male";
+        } else {
+            return "Female";
+        }
+    }
+
     // **************** Info Setter and Getter ****************//
 
     public void setInfo(Boolean info) {
@@ -178,6 +230,14 @@ public class Account {
 
     public Boolean getInfo() {
         return info;
+    }
+
+    public String getInfoAsString() {
+        if (info == true) {
+            return "VIP";
+        } else {
+            return "Personal";
+        }
     }
 
     @Override
