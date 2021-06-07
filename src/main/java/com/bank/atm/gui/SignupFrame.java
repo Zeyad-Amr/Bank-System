@@ -27,7 +27,6 @@ public class SignupFrame {
   String PhoneNumber_String;
   String Password;
   String InitialBalance_String;
-  // String CreditBalance = 0.8 * InitialBalance;
   Boolean Gender;
   Boolean Account_Type;
 
@@ -222,49 +221,68 @@ public class SignupFrame {
       @Override
       public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == SignUPButton) {
-
-          // Get Values From Text Fields............
-          Name = NameTextField.getText();
-          PhoneNumber_String = PhoneNumberTextField.getText();
-          Password = PasswordTextField.getText();
-          InitialBalance_String = InitialBalanceTextField.getText();
-          String BirthDate = BirthDateTextField.getText();
-          // Exceptions For National ID//
+          JWindow window = new JWindow();
+          window.getContentPane().add(new JLabel("Loading", SwingConstants.CENTER));
+          window.setBounds(500, 150, 300, 200);
+          window.setVisible(true);
           try {
-            long nationalId_Long = Long.parseLong(NationalIDTextField.getText());
-            NationalId_String = NationalIDTextField.getText();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-            LocalDate date1 = LocalDate.parse(BirthDate, formatter);
-
-            if (nationalId_Long <= 0) {
-              JOptionPane.showMessageDialog(signupFrame, "Enter Positive National ID");
+            if ("National ID".equals(NationalIDTextField.getText()) || NationalIDTextField.getText().length() != 14) {
+              JOptionPane.showMessageDialog(signupFrame, "Please enter a valid 14 digit National Id");
+            } else if ("Name".equals(NameTextField.getText())) {
+              JOptionPane.showMessageDialog(signupFrame, "Please enter full name");
+            } else if ("Phone Number".equals(PhoneNumberTextField.getText())) {
+              JOptionPane.showMessageDialog(signupFrame, "Please enter a valid phone number");
+            } else if ("Password".equals(PasswordTextField.getText())) {
+              JOptionPane.showMessageDialog(signupFrame, "Please enter valid password");
+            } else if ("Birthdate".equals(BirthDateTextField.getText())) {
+              JOptionPane.showMessageDialog(signupFrame, "Please enter birthday");
+            } else if (Account_Type == null) {
+              JOptionPane.showMessageDialog(signupFrame, "Please choose account type");
+            } else if (Gender == null) {
+              JOptionPane.showMessageDialog(signupFrame, "Please choose gender");
+            } else if ("Initial Balance".equals(InitialBalanceTextField.getText())) {
+              JOptionPane.showMessageDialog(signupFrame, "Please enter valid initial balance");
+            } else if (Account_Type.equals(true) && Double.parseDouble(InitialBalanceTextField.getText()) < 10000) {
+              JOptionPane.showMessageDialog(signupFrame, "Sorry, minimum initial balance for vip account is 10000 EGP");
+            } else if (Account_Type.equals(false) && Double.parseDouble(InitialBalanceTextField.getText()) < 1000) {
+              JOptionPane.showMessageDialog(signupFrame,
+                  "Sorry, minimum initial balance for personal account is 1000 EGP");
             } else {
-              if (NationalId_String.length() != 14) {
-                JOptionPane.showMessageDialog(signupFrame, "National ID Should be 14 Numbers");
-              } else {
-                System.out.println(nationalId_Long);
+              try {
+                String BirthDate = BirthDateTextField.getText();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+                LocalDate date1 = LocalDate.parse(BirthDate, formatter);
+
                 System.out.println(BirthDate + "\t" + date1);
-
-                System.out.println("NationalId=" + NationalId_String);
-                System.out.println("Name=" + Name);
-                System.out.println("PhoneNumber=" + PhoneNumber_String);
-                System.out.println("Password=" + Password);
-                System.out.println("InitialBalance=" + InitialBalance_String);
-                System.out.println("Gender=" + Gender);
-                System.out.println("Account_Type=" + Account_Type);
-                Account account = new Account(0, Name, NationalId_String, Password, LocalDate.now(), PhoneNumber_String,
-                    Double.parseDouble(InitialBalance_String), Utils.getRandomNumber(11111111, 99999999), Gender);
-
-                Auth.signUp(account);
-                JOptionPane.showMessageDialog(signupFrame, "Sign Up Successfully :)");
+              } catch (Exception e) {
+                JOptionPane.showMessageDialog(signupFrame,
+                    "Please Enter Date in Numbers By this form only \n  \t Day/Month/Year ");
+                BirthDateTextField.setText("");
               }
+              Account account = new Account(0, NameTextField.getText(), NationalIDTextField.getText(),
+                  PasswordTextField.getText(), LocalDate.now(), PhoneNumberTextField.getText(),
+                  Double.parseDouble(InitialBalanceTextField.getText()), Utils.getRandomNumber(11111111, 99999999),
+                  Gender, Account_Type);
+
+              Account acc = Auth.signUp(account);
+              if (acc != null) {
+                new AccountFrame(account);
+                signupFrame.dispose();
+
+              }
+              JOptionPane.showMessageDialog(signupFrame, "Sign Up Successfully :)");
             }
           } catch (NumberFormatException a) {
-            JOptionPane.showMessageDialog(signupFrame, "Enter Numbers Only For National ID");
+            JOptionPane.showMessageDialog(signupFrame, "Enter Numbers Only");
           } catch (Exception e) {
-            JOptionPane.showMessageDialog(signupFrame,
-                "Please Enter Date in Numbers By this form only \n  \t Day/Month/Year ");
+            JOptionPane.showMessageDialog(signupFrame, "invalid inputs");
           }
+          window.setVisible(false);
+          JFrame frame = new JFrame();
+          frame.add(new JLabel("Welcome Swing application..."));
+          frame.setVisible(true);
+          frame.setSize(300, 200);
+          window.dispose();
         }
       }
     });
@@ -291,25 +309,28 @@ public class SignupFrame {
 
       @Override
       public void focusLost(FocusEvent fe) {
-        try {
-          long nationalId_Long = Long.parseLong(NationalIDTextField.getText());
-          NationalId_String = NationalIDTextField.getText();
-          if (nationalId_Long <= 0) {
-            JOptionPane.showMessageDialog(signupFrame, "Enter Positive National ID");
-            NationalIDTextField.setText("");
-          } else {
-            if (NationalId_String.length() != 14) {
-              JOptionPane.showMessageDialog(signupFrame, "National ID Should be 14 Numbers");
+        if (NationalIDTextField.getText().length() != 0) {
+          try {
+            long nationalId_Long = Long.parseLong(NationalIDTextField.getText());
+            NationalId_String = NationalIDTextField.getText();
+            if (nationalId_Long <= 0) {
+              JOptionPane.showMessageDialog(signupFrame, "Enter Positive National ID");
               NationalIDTextField.setText("");
+            } else {
+              if (NationalId_String.length() != 14) {
+                JOptionPane.showMessageDialog(signupFrame, "National ID Should be 14 Numbers");
+                NationalIDTextField.setText("");
+              }
             }
+          } catch (NumberFormatException a) {
+            JOptionPane.showMessageDialog(signupFrame, "Enter Numbers Only For National ID");
+            NationalIDTextField.setText("");
           }
-        } catch (NumberFormatException a) {
-          JOptionPane.showMessageDialog(signupFrame, "Enter Numbers Only For National ID");
-          NationalIDTextField.setText("");
         }
       }
     });
     NameTextField.addFocusListener(new FocusListener() {
+
       @Override
       public void focusGained(FocusEvent e) {
         if ("Name".equals(NameTextField.getText())) {
@@ -319,6 +340,12 @@ public class SignupFrame {
 
       @Override
       public void focusLost(FocusEvent fe) {
+        String name = NameTextField.getText();
+        if (name.length() < 6 && name.length() != 0) {
+          System.out.println(name);
+          JOptionPane.showMessageDialog(signupFrame, "Enter full name");
+          NameTextField.setText("");
+        }
       }
     });
     PhoneNumberTextField.addFocusListener(new FocusListener() {
@@ -331,17 +358,19 @@ public class SignupFrame {
 
       @Override
       public void focusLost(FocusEvent fe) {
-        try {
-          int PhoneNumber_Integer = Integer.parseInt(PhoneNumberTextField.getText());
-          if (PhoneNumber_Integer <= 0) {
-            JOptionPane.showMessageDialog(signupFrame, "Enter Positive PhoneNumber");
+        if (PhoneNumberTextField.getText().length() != 0) {
+          try {
+            int PhoneNumber_Integer = Integer.parseInt(PhoneNumberTextField.getText());
+            if (PhoneNumber_Integer <= 0 || PhoneNumberTextField.getText().length() != 11) {
+              JOptionPane.showMessageDialog(signupFrame, "invalid Phone Number");
+              PhoneNumberTextField.setText("");
+            } else {
+              System.out.println(PhoneNumber_Integer);
+            }
+          } catch (NumberFormatException a) {
+            JOptionPane.showMessageDialog(signupFrame, "Enter Numbers Only For PhoneNumber");
             PhoneNumberTextField.setText("");
-          } else {
-            System.out.println(PhoneNumber_Integer);
           }
-        } catch (NumberFormatException a) {
-          JOptionPane.showMessageDialog(signupFrame, "Enter Numbers Only For PhoneNumber");
-          PhoneNumberTextField.setText("");
         }
       }
     });
@@ -355,6 +384,11 @@ public class SignupFrame {
 
       @Override
       public void focusLost(FocusEvent fe) {
+        if (PasswordTextField.getText().length() != 0 && PasswordTextField.getText().length() < 8) {
+          JOptionPane.showMessageDialog(signupFrame,
+              "Weak Password , password shoulf be at least 8 characters or digits");
+          PhoneNumberTextField.setText("");
+        }
       }
     });
     InitialBalanceTextField.addFocusListener(new FocusListener() {
@@ -367,17 +401,19 @@ public class SignupFrame {
 
       @Override
       public void focusLost(FocusEvent fe) {
-        try {
-          int InitialBalance_Integer = Integer.parseInt(InitialBalanceTextField.getText());
-          if (InitialBalance_Integer <= 0) {
-            JOptionPane.showMessageDialog(signupFrame, "Enter Positive InitialBalance");
+        if (InitialBalanceTextField.getText().length() != 0) {
+          try {
+            int InitialBalance_Integer = Integer.parseInt(InitialBalanceTextField.getText());
+            if (InitialBalance_Integer <= 0) {
+              JOptionPane.showMessageDialog(signupFrame, "Enter Positive Initial Balance");
+              InitialBalanceTextField.setText("");
+            } else {
+              System.out.println(InitialBalance_Integer);
+            }
+          } catch (NumberFormatException a) {
+            JOptionPane.showMessageDialog(signupFrame, "Enter Numbers Only For InitialBalance");
             InitialBalanceTextField.setText("");
-          } else {
-            System.out.println(InitialBalance_Integer);
           }
-        } catch (NumberFormatException a) {
-          JOptionPane.showMessageDialog(signupFrame, "Enter Numbers Only For InitialBalance");
-          InitialBalanceTextField.setText("");
         }
       }
     });
@@ -391,16 +427,18 @@ public class SignupFrame {
 
       @Override
       public void focusLost(FocusEvent fe) {
-        try {
-          String BirthDate = BirthDateTextField.getText();
-          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-          LocalDate date1 = LocalDate.parse(BirthDate, formatter);
+        if (BirthDateTextField.getText().length() != 0) {
+          try {
+            String BirthDate = BirthDateTextField.getText();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+            LocalDate date1 = LocalDate.parse(BirthDate, formatter);
 
-          System.out.println(BirthDate + "\t" + date1);
-        } catch (Exception e) {
-          JOptionPane.showMessageDialog(signupFrame,
-              "Please Enter Date in Numbers By this form only \n  \t Day/Month/Year ");
-          BirthDateTextField.setText("");
+            System.out.println(BirthDate + "\t" + date1);
+          } catch (Exception e) {
+            JOptionPane.showMessageDialog(signupFrame,
+                "Please Enter Date in Numbers By this form only \n  \t Day/Month/Year ");
+            BirthDateTextField.setText("");
+          }
         }
       }
     });

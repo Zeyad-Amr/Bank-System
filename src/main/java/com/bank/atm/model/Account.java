@@ -47,7 +47,7 @@ public class Account {
 
     // **************** Custom 2 Constructor for Signing Up ****************//
     public Account(int id, String name, String nationalId, String password, LocalDate birthday, String phone,
-            double balance, String creditCardNumber, Boolean gender) {
+            double balance, String creditCardNumber, Boolean gender, Boolean info) {
         this.id = id;
         this.name = name;
         this.nationalId = nationalId;
@@ -59,16 +59,16 @@ public class Account {
         this.status = false;
         this.gender = gender;
         this.creditDate = LocalDate.now();
-
-        if (balance > 500000) {
+        this.info = info;
+        if (info) {
             // VIP Account
-            this.info = true;
+
             this.creditBalance = 0.8 * balance;
             this.creditBalanceLimit = 0.8 * balance;
             this.creditEndDate = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonthValue() + 3,
                     LocalDate.now().getDayOfMonth());
 
-        } else {
+        } else if (!info) {
             // Personal Account
             this.info = false;
             this.creditBalance = 0.6 * balance;

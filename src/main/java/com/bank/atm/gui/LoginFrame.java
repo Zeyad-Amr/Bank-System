@@ -152,14 +152,13 @@ public class LoginFrame {
             if (nationalId_String.length() != 14) {
               JOptionPane.showMessageDialog(loginFrame, "National ID Should be 14 Numbers");
             } else {
-              System.out.println(nationalId_Integer);
               Account account = Auth.login(nationalId_String, password);
               if (account != null) {
-                // JOptionPane.showMessageDialog(loginFrame, "Loading...");
                 new AccountFrame(account);
                 loginFrame.dispose();
                 System.out.println(nationalId_String + "  " + password);
               }
+
             }
           }
         } catch (NumberFormatException a) {

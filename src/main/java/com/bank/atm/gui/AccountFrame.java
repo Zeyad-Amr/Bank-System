@@ -214,6 +214,9 @@ public class AccountFrame {
           int amountDp = Integer.parseInt(amountDepositTextField.getText());
           if (amountDp <= 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
+          } else if ("Enter a description".equals(descriptionDepositTextField.getText())
+              || descriptionDepositTextField.getText().length() == 0) {
+            JOptionPane.showMessageDialog(accFrame, "Enter a description");
           } else {
             String result = Transactions.deposit(account, amountDp, DescriptionDp);
             if (result == "1") {
@@ -263,7 +266,7 @@ public class AccountFrame {
       @Override
       public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == submitTransferButton) {
-          // AMOUNT
+
           try {
             String nationalIdAsString = nationalIdTransferTextField.getText();
             long NationalIdTr = Long.parseLong(nationalIdAsString);
@@ -276,6 +279,12 @@ public class AccountFrame {
               JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
             } else if (AccountDao.findByNationalId(nationalIdAsString) == null) {
               JOptionPane.showMessageDialog(accFrame, "This national Id hasn't any accounts");
+            } else if ("Enter a description".equals(descriptionTransferTextField.getText())
+                || descriptionTransferTextField.getText().length() == 0) {
+              JOptionPane.showMessageDialog(accFrame, "Enter a description");
+            } else if ("Enter National ID you transfer to".equals(nationalIdTransferTextField.getText())
+                || nationalIdTransferTextField.getText().length() == 0) {
+              JOptionPane.showMessageDialog(accFrame, "Enter National ID you transfer to");
             } else {
               String result = Transactions.transfer(account, amountTr, DescriptionTR, nationalIdAsString);
               if (result == "1") {
@@ -345,6 +354,9 @@ public class AccountFrame {
           int amountWd = Integer.parseInt(amountWithdrawTextField.getText());
           if (amountWd <= 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
+          } else if ("Enter a description".equals(descriptionWithdrawTextField.getText())
+              || descriptionWithdrawTextField.getText().length() == 0) {
+            JOptionPane.showMessageDialog(accFrame, "Enter a description");
           } else {
             String result = Transactions.withdraw(account, amountWd, DescriptionWd);
             if (result == "1") {
@@ -400,6 +412,12 @@ public class AccountFrame {
           int amountCR = Integer.parseInt(amountCreditTextField.getText());
           if (amountCR <= 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
+          } else if ("Enter a description".equals(descriptionCreditTextField.getText())
+              || descriptionCreditTextField.getText().length() == 0) {
+            JOptionPane.showMessageDialog(accFrame, "Enter a description");
+          } else if ("What you pay for".equals(payForCreditTextField.getText())
+              || payForCreditTextField.getText().length() == 0) {
+            JOptionPane.showMessageDialog(accFrame, "Enter for what you pay");
           } else {
             System.out.println(amountCR);
             String result = Transactions.credit(account, amountCR, DescriptionCR, PayForCR);
