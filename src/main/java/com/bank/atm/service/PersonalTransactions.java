@@ -42,8 +42,17 @@ public class PersonalTransactions {
 
         public String withdraw(Account account, double amount, String description) {
                 try {
-                        if (amount > 8000) {
-                                JOptionPane.showMessageDialog(jFrame, "Maximum amount allowed is 8000 EGP");
+                        Double expenses = Services.getTotalWithdrawToday(account)
+                                        + Services.getTotalTransferToday(account);
+                        if (amount > 2000) {
+                                JOptionPane.showMessageDialog(jFrame, "Maximum amount allowed is 2000 EGP");
+                                return "0";
+                        } else if (account.getBalance() < amount) {
+                                JOptionPane.showMessageDialog(jFrame, "Your balance isn't sufficient");
+                                return "0";
+                        } else if (amount > (8000 - expenses)) {
+                                JOptionPane.showMessageDialog(jFrame, "Your daily cash withdrawal is " + expenses
+                                                + " EGP, Only " + (8000 - expenses) + " EGP allowed");
                                 return "0";
                         } else {
                                 // Add Process
@@ -73,8 +82,17 @@ public class PersonalTransactions {
 
         public String transfer(Account account, double amount, String description, String payToID) {
                 try {
-                        if (amount > 8000) {
-                                JOptionPane.showMessageDialog(jFrame, "Maximum amount allowed is 8000 EGP");
+                        Double expenses = Services.getTotalWithdrawToday(account)
+                                        + Services.getTotalTransferToday(account);
+                        if (amount > 2000) {
+                                JOptionPane.showMessageDialog(jFrame, "Maximum amount allowed is 2000 EGP");
+                                return "0";
+                        } else if (account.getBalance() < amount) {
+                                JOptionPane.showMessageDialog(jFrame, "Your balance isn't sufficient");
+                                return "0";
+                        } else if (amount > (8000 - expenses)) {
+                                JOptionPane.showMessageDialog(jFrame, "Your daily cash withdrawal is " + expenses
+                                                + " EGP, Only " + (8000 - expenses) + " EGP allowed");
                                 return "0";
                         } else {
                                 // Add process
@@ -130,8 +148,17 @@ public class PersonalTransactions {
 
         public String credit(Account account, double amount, String description, String paymentFor) {
                 try {
-                        if (amount > 8000) {
-                                JOptionPane.showMessageDialog(jFrame, "Maximum amount allowed is 8000 EGP");
+
+                        Double expenses = Services.getTotalCreditToday(account);
+                        if (amount > 2000) {
+                                JOptionPane.showMessageDialog(jFrame, "Maximum amount allowed is 2000 EGP");
+                                return "0";
+                        } else if (account.getCreditBalance() < amount) {
+                                JOptionPane.showMessageDialog(jFrame, "Your credit balance isn't sufficient");
+                                return "0";
+                        } else if (amount > (8000 - expenses)) {
+                                JOptionPane.showMessageDialog(jFrame, "Your daily credit payments is " + expenses
+                                                + " EGP, Only " + (8000 - expenses) + " EGP allowed");
                                 return "0";
                         } else {
                                 // Add Process

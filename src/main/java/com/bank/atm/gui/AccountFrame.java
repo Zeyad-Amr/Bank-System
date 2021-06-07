@@ -24,19 +24,17 @@ public class AccountFrame {
     Account account = AccountDao.findByNationalId(acc.getNationalId());
 
     //////////////////////// * Account Fields *///////////////////////
-    double balance = acc.getBalance();
-    double creditBalance = acc.getCreditBalance();
-    LocalDate creditEndDate = acc.getCreditEndDate();
-    LocalDate creditDate = acc.getCreditDate();
-
-    String name = acc.getName();
-    String info = acc.getInfoAsString();
-    String nationalID = acc.getNationalId();
-    String creditCardNumber = acc.getCreditCardNumber();
-    String phone = acc.getPhone();
-    String gender = acc.getGenderAsString();
-    String status = acc.getStatusAsString();
-    String birthdayDate = acc.getBirthday().toString();
+    double balance = account.getBalance();
+    double creditBalance = account.getCreditBalance();
+    LocalDate creditEndDate = account.getCreditEndDate();
+    String name = account.getName();
+    String info = account.getInfoAsString();
+    String nationalID = account.getNationalId();
+    String creditCardNumber = account.getCreditCardNumber();
+    String phone = account.getPhone();
+    String gender = account.getGenderAsString();
+    String status = account.getStatusAsString();
+    String birthdayDate = account.getBirthday().toString();
 
     ////////////////// * Setting of Frame *//////////////////////
     this.accFrame.setTitle("Account");

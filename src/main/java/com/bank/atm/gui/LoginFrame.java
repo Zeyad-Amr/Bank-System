@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import com.bank.atm.model.Account;
 import com.bank.atm.service.Auth;
+import com.bank.atm.service.Services;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,11 +23,11 @@ public class LoginFrame {
   JTextField NationalIDTextField = new JTextField("National ID");
   JPasswordField PasswordTextField = new JPasswordField("Password");
   JButton LoginButton = new JButton("  Login  ");
-  JButton Create_New_Account_Button = new JButton("  Create New Account ");
+  JButton Create_New_Account_Button = new JButton("Sign Up");
   JLabel NATIONALIDLabel = new JLabel("NATIONAL ID");
   JLabel PASSWORDLabel = new JLabel("PASSWORD");
   JLabel LoginLabel = new JLabel("Login");
-  JLabel NewUserLabel = new JLabel("New User");
+  JLabel NewUserLabel = new JLabel("Haven't any accounts yet?");
   // END VARIABLES.........................................//
   // SET IMAGE......................//
   ImageIcon image1 = new ImageIcon(getClass().getResource("../images/Login.png"));
@@ -71,14 +72,15 @@ public class LoginFrame {
     PasswordTextField.setBounds(60 + x, 275, 215, 30);
 
     LoginButton.setBounds(70 + x, 340, 195, 40);
-    NewUserLabel.setBounds(70, 560, 215, 40);
-    Create_New_Account_Button.setBounds(250, 560, 200, 40);
+    NewUserLabel.setBounds(50, 570, 250, 35);
+    Create_New_Account_Button.setBounds(300, 570, 150, 35);
+
     // COLORS AND FONT............//
     // FONT.........................//
     LoginLabel.setFont(new Font("Arial Rounded MT bold", 70, 40));
     PASSWORDLabel.setFont(new Font("Arial Rounded MT bold", 30, 20));
     NATIONALIDLabel.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    NewUserLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    NewUserLabel.setFont(new Font("Arial Rounded MT bold", 40, 15));
     // END OF FONT.........................//
 
     // COLORS.................................//
@@ -97,6 +99,7 @@ public class LoginFrame {
 
     LoginButton.setBackground(new java.awt.Color(161, 194, 255));
     Create_New_Account_Button.setBackground(new java.awt.Color(161, 194, 255));
+    Create_New_Account_Button.setFont(new Font("Arial Rounded MT bold", 40, 15));
     // END OF COLORS.................................//
     // ADD TO FRAME................//
     loginFrame.add(p1);
@@ -154,6 +157,7 @@ public class LoginFrame {
             } else {
               Account account = Auth.login(nationalId_String, password);
               if (account != null) {
+                Services.renewCreditCard(account);
                 new AccountFrame(account);
                 loginFrame.dispose();
                 System.out.println(nationalId_String + "  " + password);

@@ -2,15 +2,11 @@ package com.bank.atm.model;
 
 import java.time.LocalDate;
 
-public class Account {
-    private int id;
-    private String name;
-    private String nationalId;
+public class Account extends Model {
+
     private String password;
     private LocalDate birthday;
     private String phone;
-    private double balance;
-    private double creditBalance;
     private String creditCardNumber;
     private double creditBalanceLimit;
     private LocalDate creditDate;
@@ -56,25 +52,40 @@ public class Account {
         this.phone = phone;
         this.balance = balance;
         this.creditCardNumber = creditCardNumber;
-        this.status = false;
+
         this.gender = gender;
         this.creditDate = LocalDate.now();
         this.info = info;
         if (info) {
-            // VIP Account
+            if (balance > 0) {
+                this.creditBalance = 0.8 * balance;
+                this.creditBalanceLimit = 0.8 * balance;
 
-            this.creditBalance = 0.8 * balance;
-            this.creditBalanceLimit = 0.8 * balance;
+            } else {
+                this.creditBalance = 0;
+                this.creditBalanceLimit = 0;
+            }
             this.creditEndDate = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonthValue() + 3,
                     LocalDate.now().getDayOfMonth());
 
         } else if (!info) {
             // Personal Account
-            this.info = false;
-            this.creditBalance = 0.6 * balance;
-            this.creditBalanceLimit = 0.6 * balance;
+            if (balance > 0) {
+                this.creditBalance = 0.6 * balance;
+                this.creditBalanceLimit = 0.6 * balance;
+
+            } else {
+                this.creditBalance = 0;
+                this.creditBalanceLimit = 0;
+            }
             this.creditEndDate = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonthValue() + 2,
                     LocalDate.now().getDayOfMonth());
+
+        }
+        if (balance >= 0) {
+            status = false;
+        } else {
+            status = true;
         }
 
     }
@@ -133,23 +144,6 @@ public class Account {
         return phone;
     }
 
-    // **************** Balance Setter and Getter ****************//
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    // **************** CreditBalance Setter and Getter ****************//
-    public void setCreditBalance(double creditBalance) {
-        this.creditBalance = creditBalance;
-    }
-
-    public double getCreditBalance() {
-        return creditBalance;
-    }
     // **************** CreditCardnumber Setter and Getter ****************//
 
     public void setCreditCardNumber(String creditCardNumber) {
@@ -197,7 +191,7 @@ public class Account {
     }
 
     public String getStatusAsString() {
-        if (status == true) {
+        if (status) {
             return "Indebted";
         } else {
             return "Not indebted";

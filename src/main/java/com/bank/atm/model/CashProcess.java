@@ -2,14 +2,11 @@ package com.bank.atm.model;
 
 import java.time.LocalDate;
 
-public class CashProcess {
-    private int id;
-    private String name;
-    private String nationalId;
+public class CashProcess extends Model {
+
     private double amount;
     private String process;
-    private double balance;
-    private double creditBalance;
+
     private LocalDate date;
     private String description;
     private String payTo;
@@ -31,33 +28,6 @@ public class CashProcess {
 
     }
 
-    // **************** Id Setter and Getter ****************//
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    // **************** Name Setter and Getter ****************//
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    // **************** NationalId Setter and Getter ****************//
-    public void setNationalId(String nationalId) {
-        this.nationalId = nationalId;
-    }
-
-    public String getNationalId() {
-        return nationalId;
-    }
-
     // **************** Amount Setter and Getter ****************//
     public void setAmount(double amount) {
         this.amount = amount;
@@ -74,23 +44,6 @@ public class CashProcess {
 
     public String getProcess() {
         return process;
-    }// **************** Balance Setter and Getter ****************//
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-    // **************** Credit Balance Setter and Getter ****************//
-
-    public void setCreditBalance(double creditBalance) {
-        this.creditBalance = creditBalance;
-    }
-
-    public double getCreditBalance() {
-        return creditBalance;
     }
 
     // **************** Date Setter and Getter ****************//

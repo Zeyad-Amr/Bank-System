@@ -32,8 +32,8 @@ public class SignupFrame {
 
   // Create Variables.......//
   JPanel p1 = new JPanel();
-  JLabel SignUPLabel = new JLabel("Sign UP");
-  JButton SignUPButton = new JButton("  Sign UP  ");
+  JLabel SignUPLabel = new JLabel("Sign Up");
+  JButton SignUPButton = new JButton("Sign Up");
   JTextField NationalIDTextField = new JTextField("National ID");
   JLabel NationalIDLabel = new JLabel("National ID");
   JTextField NameTextField = new JTextField("Name");
@@ -136,9 +136,9 @@ public class SignupFrame {
     GenderLabel.setBounds(90, 425 + y, 250, 30);
     MaleRadioButton.setBounds(90, 455 + y, 115, 20);
     FeMaleRadioButton.setBounds(225, 455 + y, 115, 20);
-    SignUPButton.setBounds(90, 530, 250, 40);
-    AlreadyhaveanaccountLabel.setBounds(60, 580, 250, 35);
-    LoginButton.setBounds(300, 580, 150, 35);
+    SignUPButton.setBounds(90, 510, 250, 35);
+    AlreadyhaveanaccountLabel.setBounds(60, 570, 250, 35);
+    LoginButton.setBounds(300, 570, 150, 35);
     // COLORS AND FONT............//
     // FONT.........................//
     SignUPLabel.setFont(new Font("Arial Rounded MT bold", 70, 40));
@@ -150,7 +150,7 @@ public class SignupFrame {
     BirthDateLabel.setFont(new Font("Arial Rounded MT bold", 30, 20));
     GenderLabel.setFont(new Font("Arial Rounded MT bold", 30, 20));
     Acocunt_Type_Label.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    SignUPButton.setFont(new Font("Arial Rounded MT bold", 40, 25));
+    SignUPButton.setFont(new Font("Arial Rounded MT bold", 35, 20));
     AlreadyhaveanaccountLabel.setFont(new Font("Arial Rounded MT bold", 40, 15));
     LoginButton.setFont(new Font("Arial Rounded MT bold", 40, 15));
     // END OF FONT.........................//
