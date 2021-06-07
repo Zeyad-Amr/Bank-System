@@ -98,6 +98,7 @@ public class LoginFrame {
     PasswordTextField.setForeground(Color.WHITE);
 
     LoginButton.setBackground(new java.awt.Color(161, 194, 255));
+    LoginButton.setFont(new Font("Arial Rounded MT bold", 40, 20));
     Create_New_Account_Button.setBackground(new java.awt.Color(161, 194, 255));
     Create_New_Account_Button.setFont(new Font("Arial Rounded MT bold", 40, 15));
     // END OF COLORS.................................//

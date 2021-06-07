@@ -4,7 +4,7 @@ import com.bank.atm.model.Account;
 
 public class Transactions {
 
-    public static String deposit(Account account, double amount, String description) {
+    public static Boolean deposit(Account account, double amount, String description) {
         PersonalTransactions personal = new PersonalTransactions();
         VipTransactions vip = new VipTransactions();
         if (account.getInfo()) {
@@ -15,7 +15,7 @@ public class Transactions {
 
     }
 
-    public static String withdraw(Account account, double amount, String description) {
+    public static Boolean withdraw(Account account, double amount, String description) {
         PersonalTransactions personal = new PersonalTransactions();
         VipTransactions vip = new VipTransactions();
         if (account.getInfo()) {
@@ -25,7 +25,7 @@ public class Transactions {
         }
     }
 
-    public static String transfer(Account account, double amount, String description, String payToID) {
+    public static Boolean transfer(Account account, double amount, String description, String payToID) {
         PersonalTransactions personal = new PersonalTransactions();
         VipTransactions vip = new VipTransactions();
         if (account.getInfo()) {
@@ -35,7 +35,7 @@ public class Transactions {
         }
     }
 
-    public static String credit(Account account, double amount, String description) {
+    public static Boolean credit(Account account, double amount, String description) {
         PersonalTransactions personal = new PersonalTransactions();
         VipTransactions vip = new VipTransactions();
         if (account.getInfo()) {

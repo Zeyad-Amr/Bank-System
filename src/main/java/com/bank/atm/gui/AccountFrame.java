@@ -216,8 +216,8 @@ public class AccountFrame {
               || descriptionDepositTextField.getText().length() == 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter a description");
           } else {
-            String result = Transactions.deposit(account, amountDp, DescriptionDp);
-            if (result == "1") {
+            Boolean result = Transactions.deposit(account, amountDp, DescriptionDp);
+            if (result) {
               new AccountFrame(AccountDao.findByNationalId(account.getNationalId()));
               accFrame.dispose();
             }
@@ -284,8 +284,8 @@ public class AccountFrame {
                 || nationalIdTransferTextField.getText().length() == 0) {
               JOptionPane.showMessageDialog(accFrame, "Enter National ID you transfer to");
             } else {
-              String result = Transactions.transfer(account, amountTr, DescriptionTR, nationalIdAsString);
-              if (result == "1") {
+              Boolean result = Transactions.transfer(account, amountTr, DescriptionTR, nationalIdAsString);
+              if (result) {
                 new AccountFrame(AccountDao.findByNationalId(account.getNationalId()));
                 accFrame.dispose();
               }
@@ -356,8 +356,8 @@ public class AccountFrame {
               || descriptionWithdrawTextField.getText().length() == 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter a description");
           } else {
-            String result = Transactions.withdraw(account, amountWd, DescriptionWd);
-            if (result == "1") {
+            Boolean result = Transactions.withdraw(account, amountWd, DescriptionWd);
+            if (result) {
               new AccountFrame(AccountDao.findByNationalId(account.getNationalId()));
               accFrame.dispose();
             }
@@ -415,8 +415,8 @@ public class AccountFrame {
             JOptionPane.showMessageDialog(accFrame, "Enter a description");
           } else {
             System.out.println(amountCR);
-            String result = Transactions.credit(account, amountCR, DescriptionCR);
-            if (result == "1") {
+            Boolean result = Transactions.credit(account, amountCR, DescriptionCR);
+            if (result) {
               new AccountFrame(AccountDao.findByNationalId(account.getNationalId()));
               accFrame.dispose();
             }

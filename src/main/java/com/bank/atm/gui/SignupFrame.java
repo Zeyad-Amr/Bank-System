@@ -352,6 +352,7 @@ public class SignupFrame {
       public void focusLost(FocusEvent fe) {
         if (PhoneNumberTextField.getText().length() != 0) {
           try {
+            char c = PhoneNumberTextField.getText().charAt(2);
             int PhoneNumber_Integer = Integer.parseInt(PhoneNumberTextField.getText());
             if (PhoneNumber_Integer <= 0 || PhoneNumberTextField.getText().length() != 11) {
               JOptionPane.showMessageDialog(signupFrame, "invalid Phone Number");

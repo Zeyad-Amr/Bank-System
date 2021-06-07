@@ -14,7 +14,7 @@ public class VipTransactions extends PersonalTransactions {
         JFrame jFrame = new JFrame("Bankoo Account");
 
         @Override
-        public String deposit(Account account, double amount, String description) {
+        public Boolean deposit(Account account, double amount, String description) {
 
                 try {
                         // Add Process
@@ -33,29 +33,29 @@ public class VipTransactions extends PersonalTransactions {
                                         account.getGender(), account.getInfo());
 
                         AccountDao.save(account);
-                        return "1";
+                        return true;
                 } catch (Exception e) {
                         JOptionPane.showMessageDialog(jFrame, "Something is wrong, please try again");
-                        return "0";
+                        return true;
                 }
 
         }
 
         @Override
-        public String withdraw(Account account, double amount, String description) {
+        public Boolean withdraw(Account account, double amount, String description) {
                 try {
                         Double expenses = Services.getTotalWithdrawToday(account)
                                         + Services.getTotalTransferToday(account);
                         if (amount > 5000) {
                                 JOptionPane.showMessageDialog(jFrame, "Maximum amount allowed is 5000 EGP");
-                                return "0";
+                                return false;
                         } else if (account.getBalance() < amount) {
                                 JOptionPane.showMessageDialog(jFrame, "Your balance isn't sufficient");
-                                return "0";
+                                return false;
                         } else if (amount > (20000 - expenses)) {
                                 JOptionPane.showMessageDialog(jFrame, "Your daily cash withdrawal is " + expenses
                                                 + " EGP, Only " + (20000 - expenses) + " EGP allowed");
-                                return "0";
+                                return false;
                         } else {
                                 // Add Process
                                 CashProcess cashProcess = new CashProcess(0, account.getName(), account.getNationalId(),
@@ -73,30 +73,30 @@ public class VipTransactions extends PersonalTransactions {
                                                 account.getStatus(), account.getGender(), account.getInfo());
 
                                 AccountDao.save(account);
-                                return "1";
+                                return true;
                         }
                 } catch (Exception e) {
                         JOptionPane.showMessageDialog(jFrame, "Something is wrong, please try again");
-                        return "0";
+                        return false;
                 }
 
         }
 
         @Override
-        public String transfer(Account account, double amount, String description, String payToID) {
+        public Boolean transfer(Account account, double amount, String description, String payToID) {
                 try {
                         Double expenses = Services.getTotalWithdrawToday(account)
                                         + Services.getTotalTransferToday(account);
                         if (amount > 5000) {
                                 JOptionPane.showMessageDialog(jFrame, "Maximum amount allowed is 5000 EGP");
-                                return "0";
+                                return false;
                         } else if (account.getBalance() < amount) {
                                 JOptionPane.showMessageDialog(jFrame, "Your balance isn't sufficient");
-                                return "0";
+                                return false;
                         } else if (amount > (20000 - expenses)) {
                                 JOptionPane.showMessageDialog(jFrame, "Your daily cash withdrawal is " + expenses
                                                 + " EGP, Only " + (20000 - expenses) + " EGP allowed");
-                                return "0";
+                                return false;
                         } else {
                                 Account transferAccount = AccountDao.findByNationalId(payToID);
                                 // Add process
@@ -142,30 +142,30 @@ public class VipTransactions extends PersonalTransactions {
 
                                 AccountDao.save(transferAccount);
 
-                                return "1";
+                                return true;
                         }
                 } catch (Exception e) {
                         JOptionPane.showMessageDialog(jFrame, "Something is wrong, please try again");
-                        return "0";
+                        return false;
                 }
 
         }
 
         @Override
-        public String credit(Account account, double amount, String description, String paymentFor) {
+        public Boolean credit(Account account, double amount, String description, String paymentFor) {
                 try {
 
                         Double expenses = Services.getTotalCreditToday(account);
                         if (amount > 5000) {
                                 JOptionPane.showMessageDialog(jFrame, "Maximum amount allowed is 5000 EGP");
-                                return "0";
+                                return false;
                         } else if (account.getCreditBalance() < amount) {
                                 JOptionPane.showMessageDialog(jFrame, "Your credit balance isn't sufficient");
-                                return "0";
+                                return false;
                         } else if (amount > (20000 - expenses)) {
                                 JOptionPane.showMessageDialog(jFrame, "Your daily credit payments is " + expenses
                                                 + " EGP, Only " + (20000 - expenses) + " EGP allowed");
-                                return "0";
+                                return false;
                         } else {
                                 // Add Process
                                 CashProcess cashProcess = new CashProcess(0, account.getName(), account.getNationalId(),
@@ -184,11 +184,11 @@ public class VipTransactions extends PersonalTransactions {
                                                 account.getStatus(), account.getGender(), account.getInfo());
 
                                 AccountDao.save(account);
-                                return "1";
+                                return true;
                         }
                 } catch (Exception e) {
                         JOptionPane.showMessageDialog(jFrame, "Something is wrong, please try again");
-                        return "0";
+                        return false;
                 }
 
         }
