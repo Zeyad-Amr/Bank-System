@@ -37,9 +37,9 @@ public class Services {
                     account.getBirthday(), account.getPhone(), newBalance, account.getCreditCardNumber(),
                     account.getGender(), checkStatus(acc));
             AccountDao.save(acc);
-            CashProcess process = new CashProcess(0, acc.getName(), acc.getNationalId(), newBalance, "credit debts",
-                    acc.getBalance(), acc.getCreditBalance(), acc.getCreditDate(), "for renewing your credit card",
-                    "-");
+            CashProcess process = new CashProcess(0, acc.getName(), acc.getNationalId(),
+                    (account.getCreditBalanceLimit() - account.getCreditBalance()), "credit debts", newBalance,
+                    acc.getCreditBalance(), acc.getCreditDate(), "for renewing your credit card", "-");
             ProcessDao.save(process);
         }
 
