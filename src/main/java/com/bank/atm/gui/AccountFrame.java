@@ -112,11 +112,11 @@ public class AccountFrame {
     JLabel creditexpireLabel = new JLabel("Card expires at " + creditEndDate.toString());
     JLabel cardRemianDaysLabel = new JLabel(
         "remaining days is " + LocalDate.now().until(creditEndDate, ChronoUnit.DAYS) + " days");
-    JLabel payForCreditLabel = new JLabel("Pay For");
+    // JLabel payForCreditLabel = new JLabel("Pay For");
 
     JTextField amountCreditTextField = new JTextField("Enter The Amount");
     JTextField descriptionCreditTextField = new JTextField("Enter a description");
-    JTextField payForCreditTextField = new JTextField("What you pay for");
+    // JTextField payForCreditTextField = new JTextField("What you pay for");
 
     JButton submitCreditButton = new JButton("Submit");
 
@@ -403,7 +403,7 @@ public class AccountFrame {
     ////////////////////// * Credit Submit Button Listener *////////////////
     submitCreditButton.addActionListener((ActionEvent ae) -> {
       String DescriptionCR = descriptionCreditTextField.getText();
-      String PayForCR = payForCreditTextField.getText();
+      // String PayForCR = payForCreditTextField.getText();
 
       if (ae.getSource() == submitCreditButton) {
         try {
@@ -413,12 +413,9 @@ public class AccountFrame {
           } else if ("Enter a description".equals(descriptionCreditTextField.getText())
               || descriptionCreditTextField.getText().length() == 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter a description");
-          } else if ("What you pay for".equals(payForCreditTextField.getText())
-              || payForCreditTextField.getText().length() == 0) {
-            JOptionPane.showMessageDialog(accFrame, "Enter for what you pay");
           } else {
             System.out.println(amountCR);
-            String result = Transactions.credit(account, amountCR, DescriptionCR, PayForCR);
+            String result = Transactions.credit(account, amountCR, DescriptionCR);
             if (result == "1") {
               new AccountFrame(AccountDao.findByNationalId(account.getNationalId()));
               accFrame.dispose();
@@ -429,7 +426,7 @@ public class AccountFrame {
         }
 
         System.out.println(DescriptionCR);
-        System.out.println(PayForCR);
+
       }
     });
 
@@ -462,19 +459,19 @@ public class AccountFrame {
       }
     });
 
-    payForCreditTextField.addFocusListener(new FocusListener() {
-      @Override
-      public void focusGained(FocusEvent e) {
-        if ("What you pay for".equals(payForCreditTextField.getText())) {
-          payForCreditTextField.setText("");
-        }
-      }
+    // payForCreditTextField.addFocusListener(new FocusListener() {
+    // @Override
+    // public void focusGained(FocusEvent e) {
+    // if ("What you pay for".equals(payForCreditTextField.getText())) {
+    // payForCreditTextField.setText("");
+    // }
+    // }
 
-      @Override
-      public void focusLost(FocusEvent fe) {
+    // @Override
+    // public void focusLost(FocusEvent fe) {
 
-      }
-    });
+    // }
+    // });
 
     accFrame.setLayout(null);
     accFrame.add(headerPanel);
@@ -804,11 +801,11 @@ public class AccountFrame {
     creditPanel.add(submitCreditButton);
     creditPanel.add(amountCreditLabel);
     creditPanel.add(descriptionCreditLabel);
-    creditPanel.add(payForCreditLabel);
+    // creditPanel.add(payForCreditLabel);
     creditPanel.add(creditBalanceTitleLabel);
     creditPanel.add(amountCreditTextField);
     creditPanel.add(descriptionCreditTextField);
-    creditPanel.add(payForCreditTextField);
+    // creditPanel.add(payForCreditTextField);
     creditPanel.add(creditBalanceLabel);
     creditPanel.add(creditexpireLabel);
     creditPanel.add(cardRemianDaysLabel);
@@ -818,8 +815,8 @@ public class AccountFrame {
     amountCreditTextField.setBounds(200, 60 + y, 400, 40);
     descriptionCreditLabel.setBounds(40, 110 + y, 160, 40);
     descriptionCreditTextField.setBounds(200, 110 + y, 400, 40);
-    payForCreditLabel.setBounds(40, 160 + y, 160, 40);
-    payForCreditTextField.setBounds(200, 160 + y, 400, 40);
+    // payForCreditLabel.setBounds(40, 160 + y, 160, 40);
+    // payForCreditTextField.setBounds(200, 160 + y, 400, 40);
     submitCreditButton.setBounds(200, 210 + y, 400, 50);
 
     creditBalanceTitleLabel.setBounds(670, 50, 350, 40);
@@ -831,8 +828,8 @@ public class AccountFrame {
     amountCreditLabel.setForeground(new java.awt.Color(161, 194, 255));
     descriptionCreditLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
     descriptionCreditLabel.setForeground(new java.awt.Color(161, 194, 255));
-    payForCreditLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    payForCreditLabel.setForeground(new java.awt.Color(161, 194, 255));
+    // payForCreditLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    // payForCreditLabel.setForeground(new java.awt.Color(161, 194, 255));
 
     amountCreditTextField.setForeground(Color.WHITE);
     amountCreditTextField.setBackground(new java.awt.Color(34, 45, 65));
@@ -840,9 +837,9 @@ public class AccountFrame {
     descriptionCreditTextField.setForeground(Color.WHITE);
     descriptionCreditTextField.setBackground(new java.awt.Color(34, 45, 65));
     descriptionCreditTextField.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    payForCreditTextField.setForeground(Color.WHITE);
-    payForCreditTextField.setBackground(new java.awt.Color(34, 45, 65));
-    payForCreditTextField.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    // payForCreditTextField.setForeground(Color.WHITE);
+    // payForCreditTextField.setBackground(new java.awt.Color(34, 45, 65));
+    // payForCreditTextField.setFont(new Font("Arial Rounded MT bold", 30, 20));
     creditTitleLabel.setFont(new Font("Arial Rounded MT bold", 45, 35));
     creditTitleLabel.setForeground(Color.WHITE);
     creditBalanceTitleLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));

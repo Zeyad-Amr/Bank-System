@@ -13,6 +13,7 @@ import com.bank.atm.model.CashProcess;
 public class VipTransactions extends PersonalTransactions {
         JFrame jFrame = new JFrame("Bankoo Account");
 
+        @Override
         public String deposit(Account account, double amount, String description) {
 
                 try {
@@ -40,6 +41,7 @@ public class VipTransactions extends PersonalTransactions {
 
         }
 
+        @Override
         public String withdraw(Account account, double amount, String description) {
                 try {
                         Double expenses = Services.getTotalWithdrawToday(account)
@@ -80,6 +82,7 @@ public class VipTransactions extends PersonalTransactions {
 
         }
 
+        @Override
         public String transfer(Account account, double amount, String description, String payToID) {
                 try {
                         Double expenses = Services.getTotalWithdrawToday(account)
@@ -95,10 +98,12 @@ public class VipTransactions extends PersonalTransactions {
                                                 + " EGP, Only " + (20000 - expenses) + " EGP allowed");
                                 return "0";
                         } else {
+                                Account transferAccount = AccountDao.findByNationalId(payToID);
                                 // Add process
                                 CashProcess cashProcess = new CashProcess(0, account.getName(), account.getNationalId(),
                                                 amount, "transfer", (account.getBalance() - amount),
-                                                account.getCreditBalance(), LocalDate.now(), description, payToID);
+                                                account.getCreditBalance(), LocalDate.now(),
+                                                description + " to " + transferAccount.getName(), payToID);
 
                                 ProcessDao.save(cashProcess);
 
@@ -115,12 +120,12 @@ public class VipTransactions extends PersonalTransactions {
                                 // Transfer Money and Update transfer Account
 
                                 // Add process of transfer
-                                Account transferAccount = AccountDao.findByNationalId(payToID);
+
                                 CashProcess transferProcess = new CashProcess(0, transferAccount.getName(),
                                                 transferAccount.getNationalId(), amount, "transfered to you",
                                                 (transferAccount.getBalance() + amount), account.getCreditBalance(),
-                                                LocalDate.now(),
-                                                "This amount transfered from " + transferAccount.getName(), payToID);
+                                                LocalDate.now(), "This amount is transfered from " + account.getName(),
+                                                payToID);
                                 ProcessDao.save(transferProcess);
 
                                 // Update Account Transfer Data
@@ -146,6 +151,7 @@ public class VipTransactions extends PersonalTransactions {
 
         }
 
+        @Override
         public String credit(Account account, double amount, String description, String paymentFor) {
                 try {
 

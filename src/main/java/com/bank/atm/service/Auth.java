@@ -2,9 +2,7 @@ package com.bank.atm.service;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import com.bank.atm.dao.AccountDao;
-
 import com.bank.atm.model.Account;
 
 public class Auth {

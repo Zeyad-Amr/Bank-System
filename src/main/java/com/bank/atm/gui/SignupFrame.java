@@ -221,10 +221,7 @@ public class SignupFrame {
       @Override
       public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == SignUPButton) {
-          JWindow window = new JWindow();
-          window.getContentPane().add(new JLabel("Loading", SwingConstants.CENTER));
-          window.setBounds(500, 150, 300, 200);
-          window.setVisible(true);
+
           try {
             if ("National ID".equals(NationalIDTextField.getText()) || NationalIDTextField.getText().length() != 14) {
               JOptionPane.showMessageDialog(signupFrame, "Please enter a valid 14 digit National Id");
@@ -277,12 +274,7 @@ public class SignupFrame {
           } catch (Exception e) {
             JOptionPane.showMessageDialog(signupFrame, "invalid inputs");
           }
-          window.setVisible(false);
-          JFrame frame = new JFrame();
-          frame.add(new JLabel("Welcome Swing application..."));
-          frame.setVisible(true);
-          frame.setSize(300, 200);
-          window.dispose();
+
         }
       }
     });
@@ -387,7 +379,7 @@ public class SignupFrame {
         if (PasswordTextField.getText().length() != 0 && PasswordTextField.getText().length() < 8) {
           JOptionPane.showMessageDialog(signupFrame,
               "Weak Password , password shoulf be at least 8 characters or digits");
-          PhoneNumberTextField.setText("");
+          PasswordTextField.setText("");
         }
       }
     });

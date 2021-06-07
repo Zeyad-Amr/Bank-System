@@ -30,8 +30,7 @@ public class Services {
         if (checkExpireDate(account)) {
             double newBalance = account.getBalance() - (account.getCreditBalanceLimit() - account.getCreditBalance());
             Account acc = new Account(account.getId(), account.getName(), account.getNationalId(),
-                    account.getPassword(), account.getBirthday(), account.getPhone(),
-                    account.getBalance() - (account.getCreditBalanceLimit() - account.getCreditBalance()),
+                    account.getPassword(), account.getBirthday(), account.getPhone(), newBalance,
                     account.getCreditCardNumber(), account.getGender(), account.getInfo());
             acc = new Account(account.getId(), account.getName(), account.getNationalId(), account.getPassword(),
                     account.getBirthday(), account.getPhone(), newBalance, account.getCreditCardNumber(),
@@ -49,7 +48,8 @@ public class Services {
         Double total = 0.0;
         List<CashProcess> allProcess = ProcessDao.findAllByNationalId(account.getNationalId());
         for (int i = 0; i < allProcess.size(); i++) {
-            if (allProcess.get(i).getProcess().equals("withdraw")) {
+            if (allProcess.get(i).getProcess().equals("withdraw")
+                    && allProcess.get(i).getDate().equals(LocalDate.now())) {
                 total += allProcess.get(i).getAmount();
             }
         }
@@ -61,7 +61,8 @@ public class Services {
         Double total = 0.0;
         List<CashProcess> allProcess = ProcessDao.findAllByNationalId(account.getNationalId());
         for (int i = 0; i < allProcess.size(); i++) {
-            if (allProcess.get(i).getProcess().equals("transfer")) {
+            if (allProcess.get(i).getProcess().equals("transfer")
+                    && allProcess.get(i).getDate().equals(LocalDate.now())) {
                 total += allProcess.get(i).getAmount();
             }
         }
@@ -73,7 +74,8 @@ public class Services {
         Double total = 0.0;
         List<CashProcess> allProcess = ProcessDao.findAllByNationalId(account.getNationalId());
         for (int i = 0; i < allProcess.size(); i++) {
-            if (allProcess.get(i).getProcess().equals("credit")) {
+            if (allProcess.get(i).getProcess().equals("credit")
+                    && allProcess.get(i).getDate().equals(LocalDate.now())) {
                 total += allProcess.get(i).getAmount();
             }
         }

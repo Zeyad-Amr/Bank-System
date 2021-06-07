@@ -5,11 +5,20 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbConnection {
-    private static final String HOST = "sql11.freemysqlhosting.net"; // "127.0.0.1" for localhosting
+
+    // local
+    private static final String HOST = "127.0.0.1";
     private static final int PORT = 3306;
-    private static final String DB_NAME = "sql11416851"; // "bank_db" for localhosting
-    private static final String USERNAME = "sql11416851"; // "root" for localhosting
-    private static final String PASSWORD = "2NLnD5ek91"; // "" for localhosting
+    private static final String DB_NAME = "bank_db";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
+
+    // global
+    // private static final String HOST = "sql11.freemysqlhosting.net";
+    // private static final int PORT = 3306;
+    // private static final String DB_NAME = "sql11416851";
+    // private static final String USERNAME = "sql11416851";
+    // private static final String PASSWORD = "2NLnD5ek91";
 
     private static Connection connection;
 

@@ -35,13 +35,13 @@ public class Transactions {
         }
     }
 
-    public static String credit(Account account, double amount, String description, String paymentFor) {
+    public static String credit(Account account, double amount, String description) {
         PersonalTransactions personal = new PersonalTransactions();
         VipTransactions vip = new VipTransactions();
         if (account.getInfo()) {
-            return vip.credit(account, amount, description, paymentFor);
+            return vip.credit(account, amount, description, "-");
         } else {
-            return personal.credit(account, amount, description, paymentFor);
+            return personal.credit(account, amount, description, "-");
         }
     }
 

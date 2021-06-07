@@ -6,7 +6,6 @@ public class CashProcess extends Model {
 
     private double amount;
     private String process;
-
     private LocalDate date;
     private String description;
     private String payTo;
