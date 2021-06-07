@@ -16,6 +16,7 @@ public class Auth {
 
             System.out.println("Login Successfully :)");
             System.out.println(account.toString());
+
             return account;
         } else if (account == null) {
             JOptionPane.showMessageDialog(jFrame, "This National ID hasn't any accounts yet, please Sign Up");

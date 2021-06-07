@@ -27,21 +27,37 @@ public class Services {
     }
 
     public static void renewCreditCard(Account account) {
+        double newBalance = account.getBalance() - (account.getCreditBalanceLimit() - account.getCreditBalance());
         if (checkExpireDate(account)) {
-            double newBalance = account.getBalance() - (account.getCreditBalanceLimit() - account.getCreditBalance());
             Account acc = new Account(account.getId(), account.getName(), account.getNationalId(),
                     account.getPassword(), account.getBirthday(), account.getPhone(), newBalance,
                     account.getCreditCardNumber(), account.getGender(), account.getInfo());
-            acc = new Account(account.getId(), account.getName(), account.getNationalId(), account.getPassword(),
-                    account.getBirthday(), account.getPhone(), newBalance, account.getCreditCardNumber(),
-                    account.getGender(), checkStatus(acc));
+
             AccountDao.save(acc);
             CashProcess process = new CashProcess(0, acc.getName(), acc.getNationalId(),
                     (account.getCreditBalanceLimit() - account.getCreditBalance()), "credit debts", newBalance,
                     acc.getCreditBalance(), acc.getCreditDate(), "for renewing your credit card", "-");
             ProcessDao.save(process);
-        }
+        } else {
+            if (account.getBalance() < 0) {
+                Account acc = new Account(account.getId(), account.getName(), account.getNationalId(),
+                        account.getPassword(), account.getBirthday(), account.getPhone(), account.getBalance(),
+                        account.getCreditBalance(), account.getCreditCardNumber(), account.getCreditBalanceLimit(),
+                        account.getCreditDate(), account.getCreditEndDate(), true, account.getGender(),
+                        account.getInfo());
 
+                AccountDao.save(acc);
+            } else {
+                Account acc = new Account(account.getId(), account.getName(), account.getNationalId(),
+                        account.getPassword(), account.getBirthday(), account.getPhone(), account.getBalance(),
+                        account.getCreditBalance(), account.getCreditCardNumber(), account.getCreditBalanceLimit(),
+                        account.getCreditDate(), account.getCreditEndDate(), false, account.getGender(),
+                        account.getInfo());
+
+                AccountDao.save(acc);
+            }
+
+        }
     }
 
     public static Double getTotalWithdrawToday(Account account) {

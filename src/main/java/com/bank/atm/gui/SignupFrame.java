@@ -257,9 +257,9 @@ public class SignupFrame {
                 BirthDateTextField.setText("");
               }
               Account account = new Account(0, NameTextField.getText(), NationalIDTextField.getText(),
-                  PasswordTextField.getText(), LocalDate.now(), PhoneNumberTextField.getText(),
-                  Double.parseDouble(InitialBalanceTextField.getText()), Utils.getRandomNumber(11111111, 99999999),
-                  Gender, Account_Type);
+                  PasswordTextField.getText(), Utils.toLocaldate(BirthDateTextField.getText()),
+                  PhoneNumberTextField.getText(), Double.parseDouble(InitialBalanceTextField.getText()),
+                  Utils.getRandomNumber(11111111, 99999999), Gender, Account_Type);
 
               Account acc = Auth.signUp(account);
               if (acc != null) {

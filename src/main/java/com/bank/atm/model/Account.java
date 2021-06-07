@@ -56,7 +56,6 @@ public class Account extends Model {
         this.creditDate = LocalDate.now();
         this.info = info;
         if (info) {
-            // Vip Account
             if (balance > 0) {
                 this.creditBalance = 0.8 * balance;
                 this.creditBalanceLimit = 0.8 * balance;

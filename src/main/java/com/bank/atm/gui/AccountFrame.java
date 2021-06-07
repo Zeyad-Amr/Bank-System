@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import com.bank.atm.dao.AccountDao;
 import com.bank.atm.model.Account;
+import com.bank.atm.service.Services;
 import com.bank.atm.service.Transactions;
 import com.bank.atm.utils.Utils;
 
@@ -21,6 +22,8 @@ public class AccountFrame {
   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
   public AccountFrame(Account acc) {
+    Account accc = AccountDao.findByNationalId(acc.getNationalId());
+    Services.renewCreditCard(accc);
     Account account = AccountDao.findByNationalId(acc.getNationalId());
 
     //////////////////////// * Account Fields *///////////////////////
@@ -218,6 +221,7 @@ public class AccountFrame {
           } else {
             Boolean result = Transactions.deposit(account, amountDp, DescriptionDp);
             if (result) {
+
               new AccountFrame(AccountDao.findByNationalId(account.getNationalId()));
               accFrame.dispose();
             }
