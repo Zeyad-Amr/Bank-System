@@ -8,5 +8,4 @@ public class App {
         new LoginFrame();
 
     }
-
 }

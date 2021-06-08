@@ -80,7 +80,7 @@ public class PersonalTransactions {
 
         }
 
-        public Boolean transfer(Account account, double amount, String description, String payToID) {
+        public Boolean transfer(Account account, double amount, String payToID) {
                 try {
                         Double expenses = Services.getTotalWithdrawToday(account)
                                         + Services.getTotalTransferToday(account);
@@ -100,7 +100,7 @@ public class PersonalTransactions {
                                 CashProcess cashProcess = new CashProcess(0, account.getName(), account.getNationalId(),
                                                 amount, "transfer", (account.getBalance() - amount),
                                                 account.getCreditBalance(), LocalDate.now(),
-                                                description + " to " + transferAccount.getName(), payToID);
+                                                "transfered to " + transferAccount.getName(), payToID);
 
                                 ProcessDao.save(cashProcess);
 

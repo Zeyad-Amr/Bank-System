@@ -6,7 +6,6 @@ import com.bank.atm.dao.AccountDao;
 import com.bank.atm.model.Account;
 import com.bank.atm.service.Services;
 import com.bank.atm.service.Transactions;
-import com.bank.atm.utils.Utils;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -118,7 +117,7 @@ public class AccountFrame {
     // JLabel payForCreditLabel = new JLabel("Pay For");
 
     JTextField amountCreditTextField = new JTextField("Enter The Amount");
-    JTextField descriptionCreditTextField = new JTextField("Enter a description");
+    JTextField descriptionCreditTextField = new JTextField("Enter a description (optional)");
     // JTextField payForCreditTextField = new JTextField("What you pay for");
 
     JButton submitCreditButton = new JButton("Submit");
@@ -131,20 +130,21 @@ public class AccountFrame {
     JLabel depositBalanceLabel = new JLabel(balance + " EGP");
 
     JTextField amountDepositTextField = new JTextField("Enter The Amount");
-    JTextField descriptionDepositTextField = new JTextField("Enter a description");
+    JTextField descriptionDepositTextField = new JTextField("Enter a description (optional)");
 
     JButton submitDepositButton = new JButton("Submit");
 
     ////////////////////// * Transfer Panel Labels *//////////////////////
     JLabel transferTitleLabel = new JLabel("Transfer");
     JLabel amountTransferLabel = new JLabel("Amount");
-    JLabel descriptionTransferLabel = new JLabel("Description");
+    // JLabel descriptionTransferLabel = new JLabel("Description");
     JLabel nationalIDTransferLabel = new JLabel("National ID");
     JLabel transferBalanceTitleLabel = new JLabel("Your Balance");
     JLabel transferBalanceLabel = new JLabel(balance + " EGP");
 
     JTextField amountTransferTextField = new JTextField("Enter The Amount");
-    JTextField descriptionTransferTextField = new JTextField("Enter a description");
+    // JTextField descriptionTransferTextField = new JTextField("Enter a description
+    // (optional)");
     JTextField nationalIdTransferTextField = new JTextField("Enter National ID you transfer to");
 
     JButton submitTransferButton = new JButton("Submit");
@@ -157,7 +157,7 @@ public class AccountFrame {
     JLabel withdrawBalanceLabel = new JLabel(balance + " EGP");
 
     JTextField amountWithdrawTextField = new JTextField("Enter The Amount");
-    JTextField descriptionWithdrawTextField = new JTextField("Enter a description");
+    JTextField descriptionWithdrawTextField = new JTextField("Enter a description (optional)");
 
     JButton submitWithdrawButton = new JButton("Submit");
 
@@ -215,9 +215,6 @@ public class AccountFrame {
           int amountDp = Integer.parseInt(amountDepositTextField.getText());
           if (amountDp <= 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
-          } else if ("Enter a description".equals(descriptionDepositTextField.getText())
-              || descriptionDepositTextField.getText().length() == 0) {
-            JOptionPane.showMessageDialog(accFrame, "Enter a description");
           } else {
             Boolean result = Transactions.deposit(account, amountDp, DescriptionDp);
             if (result) {
@@ -252,7 +249,7 @@ public class AccountFrame {
     descriptionDepositTextField.addFocusListener(new FocusListener() {
       @Override
       public void focusGained(FocusEvent e) {
-        if ("Enter a description".equals(descriptionDepositTextField.getText())) {
+        if ("Enter a description (optional)".equals(descriptionDepositTextField.getText())) {
           descriptionDepositTextField.setText("");
         }
       }
@@ -273,22 +270,19 @@ public class AccountFrame {
             String nationalIdAsString = nationalIdTransferTextField.getText();
             long NationalIdTr = Long.parseLong(nationalIdAsString);
             int amountTr = Integer.parseInt(amountTransferTextField.getText());
-            String DescriptionTR = descriptionTransferTextField.getText();
-            System.out.println(DescriptionTR);
+            // String DescriptionTR = descriptionTransferTextField.getText();
+            // System.out.println(DescriptionTR);
             System.out.println(NationalIdTr);
 
             if (amountTr <= 0) {
               JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
             } else if (AccountDao.findByNationalId(nationalIdAsString) == null) {
               JOptionPane.showMessageDialog(accFrame, "This national Id hasn't any accounts");
-            } else if ("Enter a description".equals(descriptionTransferTextField.getText())
-                || descriptionTransferTextField.getText().length() == 0) {
-              JOptionPane.showMessageDialog(accFrame, "Enter a description");
             } else if ("Enter National ID you transfer to".equals(nationalIdTransferTextField.getText())
                 || nationalIdTransferTextField.getText().length() == 0) {
               JOptionPane.showMessageDialog(accFrame, "Enter National ID you transfer to");
             } else {
-              Boolean result = Transactions.transfer(account, amountTr, DescriptionTR, nationalIdAsString);
+              Boolean result = Transactions.transfer(account, amountTr, nationalIdAsString);
               if (result) {
                 new AccountFrame(AccountDao.findByNationalId(account.getNationalId()));
                 accFrame.dispose();
@@ -320,19 +314,20 @@ public class AccountFrame {
       }
     });
 
-    descriptionTransferTextField.addFocusListener(new FocusListener() {
-      @Override
-      public void focusGained(FocusEvent e) {
-        if ("Enter a description".equals(descriptionTransferTextField.getText())) {
-          descriptionTransferTextField.setText("");
-        }
-      }
+    // descriptionTransferTextField.addFocusListener(new FocusListener() {
+    // @Override
+    // public void focusGained(FocusEvent e) {
+    // if ("Enter a description
+    // (optional)".equals(descriptionTransferTextField.getText())) {
+    // descriptionTransferTextField.setText("");
+    // }
+    // }
 
-      @Override
-      public void focusLost(FocusEvent fe) {
+    // @Override
+    // public void focusLost(FocusEvent fe) {
 
-      }
-    });
+    // }
+    // });
 
     nationalIdTransferTextField.addFocusListener(new FocusListener() {
       @Override
@@ -356,9 +351,6 @@ public class AccountFrame {
           int amountWd = Integer.parseInt(amountWithdrawTextField.getText());
           if (amountWd <= 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
-          } else if ("Enter a description".equals(descriptionWithdrawTextField.getText())
-              || descriptionWithdrawTextField.getText().length() == 0) {
-            JOptionPane.showMessageDialog(accFrame, "Enter a description");
           } else {
             Boolean result = Transactions.withdraw(account, amountWd, DescriptionWd);
             if (result) {
@@ -393,7 +385,7 @@ public class AccountFrame {
     descriptionWithdrawTextField.addFocusListener(new FocusListener() {
       @Override
       public void focusGained(FocusEvent e) {
-        if ("Enter a description".equals(descriptionWithdrawTextField.getText())) {
+        if ("Enter a description (optional)".equals(descriptionWithdrawTextField.getText())) {
           descriptionWithdrawTextField.setText("");
         }
       }
@@ -414,9 +406,6 @@ public class AccountFrame {
           int amountCR = Integer.parseInt(amountCreditTextField.getText());
           if (amountCR <= 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
-          } else if ("Enter a description".equals(descriptionCreditTextField.getText())
-              || descriptionCreditTextField.getText().length() == 0) {
-            JOptionPane.showMessageDialog(accFrame, "Enter a description");
           } else {
             System.out.println(amountCR);
             Boolean result = Transactions.credit(account, amountCR, DescriptionCR);
@@ -452,7 +441,7 @@ public class AccountFrame {
     descriptionCreditTextField.addFocusListener(new FocusListener() {
       @Override
       public void focusGained(FocusEvent e) {
-        if ("Enter a description".equals(descriptionCreditTextField.getText())) {
+        if ("Enter a description (optional)".equals(descriptionCreditTextField.getText())) {
           descriptionCreditTextField.setText("");
         }
       }
@@ -707,21 +696,22 @@ public class AccountFrame {
     transferPanel.add(transferTitleLabel);
     transferPanel.add(submitTransferButton);
     transferPanel.add(amountTransferLabel);
-    transferPanel.add(descriptionTransferLabel);
+    // transferPanel.add(descriptionTransferLabel);
     transferPanel.add(nationalIDTransferLabel);
     transferPanel.add(transferBalanceTitleLabel);
     transferPanel.add(amountTransferTextField);
-    transferPanel.add(descriptionTransferTextField);
+    // transferPanel.add(descriptionTransferTextField);
     transferPanel.add(nationalIdTransferTextField);
     transferPanel.add(transferBalanceLabel);
 
     transferTitleLabel.setBounds(260, 20, 400, 40);
     amountTransferLabel.setBounds(40, 60 + x, 160, 40);
     amountTransferTextField.setBounds(200, 60 + x, 400, 40);
-    descriptionTransferLabel.setBounds(40, 110 + x, 160, 40);
-    descriptionTransferTextField.setBounds(200, 110 + x, 400, 40);
-    nationalIDTransferLabel.setBounds(40, 160 + x, 160, 40);
-    nationalIdTransferTextField.setBounds(200, 160 + x, 400, 40);
+    // descriptionTransferLabel.setBounds(40, 110 + x, 160, 40);
+    // descriptionTransferTextField.setBounds(200, 110 + x, 400, 40);
+    nationalIDTransferLabel.setBounds(40, 110 + x, 160, 40);
+    nationalIdTransferTextField.setBounds(200, 110 + x, 400, 40);
+
     submitTransferButton.setBounds(200, 230 + x, 400, 50);
 
     transferBalanceTitleLabel.setBounds(700, 50, 350, 40);
@@ -729,17 +719,18 @@ public class AccountFrame {
 
     amountTransferLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
     amountTransferLabel.setForeground(new java.awt.Color(161, 194, 255));
-    descriptionTransferLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
-    descriptionTransferLabel.setForeground(new java.awt.Color(161, 194, 255));
+    // descriptionTransferLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
+    // descriptionTransferLabel.setForeground(new java.awt.Color(161, 194, 255));
     nationalIDTransferLabel.setFont(new Font("Arial Rounded MT bold", 35, 25));
     nationalIDTransferLabel.setForeground(new java.awt.Color(161, 194, 255));
 
     amountTransferTextField.setBackground(Color.WHITE);
     amountTransferTextField.setForeground(new java.awt.Color(50, 50, 50));
     amountTransferTextField.setFont(new Font("Arial Rounded MT bold", 30, 20));
-    descriptionTransferTextField.setForeground(new java.awt.Color(50, 50, 50));
-    descriptionTransferTextField.setBackground(Color.WHITE);
-    descriptionTransferTextField.setFont(new Font("Arial Rounded MT bold", 30, 20));
+    // descriptionTransferTextField.setForeground(new java.awt.Color(50, 50, 50));
+    // descriptionTransferTextField.setBackground(Color.WHITE);
+    // descriptionTransferTextField.setFont(new Font("Arial Rounded MT bold", 30,
+    // 20));
     nationalIdTransferTextField.setForeground(new java.awt.Color(50, 50, 50));
     nationalIdTransferTextField.setBackground(Color.WHITE);
     nationalIdTransferTextField.setFont(new Font("Arial Rounded MT bold", 30, 20));

@@ -25,13 +25,13 @@ public class Transactions {
         }
     }
 
-    public static Boolean transfer(Account account, double amount, String description, String payToID) {
+    public static Boolean transfer(Account account, double amount, String payToID) {
         PersonalTransactions personal = new PersonalTransactions();
         VipTransactions vip = new VipTransactions();
         if (account.getInfo()) {
-            return vip.transfer(account, amount, description, payToID);
+            return vip.transfer(account, amount, payToID);
         } else {
-            return personal.transfer(account, amount, description, payToID);
+            return personal.transfer(account, amount, payToID);
         }
     }
 
