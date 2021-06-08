@@ -61,6 +61,7 @@ public class TableGUI extends JFrame {
 		frame.setResizable(false);
 		frame.setSize(750, 450);
 		frame.setTitle("Account Summary");
+		frame.setLocation(320, 150);
 
 	}
 

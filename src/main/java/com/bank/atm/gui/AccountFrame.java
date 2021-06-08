@@ -216,9 +216,11 @@ public class AccountFrame {
           if (amountDp <= 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
           } else {
+            if (DescriptionDp.equals("Enter a description (optional)")) {
+              DescriptionDp = "";
+            }
             Boolean result = Transactions.deposit(account, amountDp, DescriptionDp);
             if (result) {
-
               new AccountFrame(AccountDao.findByNationalId(account.getNationalId()));
               accFrame.dispose();
             }
@@ -282,6 +284,7 @@ public class AccountFrame {
                 || nationalIdTransferTextField.getText().length() == 0) {
               JOptionPane.showMessageDialog(accFrame, "Enter National ID you transfer to");
             } else {
+
               Boolean result = Transactions.transfer(account, amountTr, nationalIdAsString);
               if (result) {
                 new AccountFrame(AccountDao.findByNationalId(account.getNationalId()));
@@ -352,6 +355,9 @@ public class AccountFrame {
           if (amountWd <= 0) {
             JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
           } else {
+            if (DescriptionWd.equals("Enter a description (optional)")) {
+              DescriptionWd = "";
+            }
             Boolean result = Transactions.withdraw(account, amountWd, DescriptionWd);
             if (result) {
               new AccountFrame(AccountDao.findByNationalId(account.getNationalId()));
@@ -408,6 +414,9 @@ public class AccountFrame {
             JOptionPane.showMessageDialog(accFrame, "Enter valid Amount");
           } else {
             System.out.println(amountCR);
+            if (DescriptionCR.equals("Enter a description (optional)")) {
+              DescriptionCR = "";
+            }
             Boolean result = Transactions.credit(account, amountCR, DescriptionCR);
             if (result) {
               new AccountFrame(AccountDao.findByNationalId(account.getNationalId()));
