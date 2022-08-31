@@ -12,4 +12,7 @@ User has the attributes of name, balance, creditCard, status and the methods of 
 - 
 Elaborating on unmentioned, yet rational, ideas is a plus
 Unhandled exceptions will be penalized
-PLAGIARIZED PROJECTS WILL BE NULLED
+PLAGIARIZED PROJECTS WILL BE NULLED  
+[![Watch the video](https://github.com/Zeyad-Amr/Bank/blob/main/Bank.png)](https://drive.google.com/file/d/1s9txC3_1hR6OEudSlST5pBa0IF-0l2P1/view?usp=sharing)
+
+[Watch Full Documentation Video](https://drive.google.com/file/d/1ibyRVoujPsZmDVbrJsCU9AJwyxjmebf0/view?usp=sharing)
