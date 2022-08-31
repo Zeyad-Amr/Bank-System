@@ -10,10 +10,10 @@ User has the attributes of name, balance, creditCard, status and the methods of 
 - deposit: add amount of money to his/her account
 - checkStatus: check the information of your account: days left to settle your credit card purchases, the current balance, the current credit card balance, etc.
 - transferAmount: add amount to another account holder
-- 
-Elaborating on unmentioned, yet rational, ideas is a plus
-Unhandled exceptions will be penalized
-PLAGIARIZED PROJECTS WILL BE NULLED   
+
+Elaborating on unmentioned, yet rational, ideas is a plus  
+Unhandled exceptions will be penalized  
+PLAGIARIZED PROJECTS WILL BE NULLED  
 
 
 ### [Bank Application Video](https://drive.google.com/file/d/1s9txC3_1hR6OEudSlST5pBa0IF-0l2P1/view?usp=sharing)  
