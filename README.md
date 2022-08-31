@@ -1,6 +1,7 @@
+# Bankoo System
 You are asked to extend the concept of a bank account system. Implement a program that features the following:
 
-GUI
+## GUI
 User has the attributes of name, balance, creditCard, status and the methods of deposit, checkStatus, and transferAmount. You can elaborate on more
 - name: the name of the person
 - balance: holds the current total amount that person owns
@@ -15,8 +16,8 @@ Unhandled exceptions will be penalized
 PLAGIARIZED PROJECTS WILL BE NULLED   
 
 
-[Bank Application Video](https://drive.google.com/file/d/1s9txC3_1hR6OEudSlST5pBa0IF-0l2P1/view?usp=sharing)  
+### [Bank Application Video](https://drive.google.com/file/d/1s9txC3_1hR6OEudSlST5pBa0IF-0l2P1/view?usp=sharing)  
 [![Watch the video](https://github.com/Zeyad-Amr/Bank/blob/main/Bank.png)](https://drive.google.com/file/d/1s9txC3_1hR6OEudSlST5pBa0IF-0l2P1/view?usp=sharing)
 
 
-[Project Full Documentation Video](https://drive.google.com/file/d/1ibyRVoujPsZmDVbrJsCU9AJwyxjmebf0/view?usp=sharing)
+### [Project Full Documentation Video](https://drive.google.com/file/d/1ibyRVoujPsZmDVbrJsCU9AJwyxjmebf0/view?usp=sharing)
