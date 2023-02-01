@@ -15,6 +15,8 @@ Elaborating on unmentioned, yet rational, ideas is a plus
 Unhandled exceptions will be penalized  
 PLAGIARIZED PROJECTS WILL BE NULLED  
 
+Using Java, Swing, JFrame, OOP, MySQL.
+
 
 https://user-images.githubusercontent.com/68791488/215922910-a91f7096-27d3-4d31-9bf8-5d88fa12a992.mp4
 
