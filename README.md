@@ -16,8 +16,9 @@ Unhandled exceptions will be penalized
 PLAGIARIZED PROJECTS WILL BE NULLED  
 
 
-### [Bank Application Video](https://drive.google.com/file/d/1s9txC3_1hR6OEudSlST5pBa0IF-0l2P1/view?usp=sharing)  
-[![Watch the video](https://github.com/Zeyad-Amr/Bank/blob/main/Bank.png)](https://drive.google.com/file/d/1s9txC3_1hR6OEudSlST5pBa0IF-0l2P1/view?usp=sharing)
+https://user-images.githubusercontent.com/68791488/215922910-a91f7096-27d3-4d31-9bf8-5d88fa12a992.mp4
 
+
+[![Watch the video](https://github.com/Zeyad-Amr/Bank/blob/main/Bank.png)](https://drive.google.com/file/d/1s9txC3_1hR6OEudSlST5pBa0IF-0l2P1/view?usp=sharing)
 
 ### [Project Full Documentation Video](https://drive.google.com/file/d/1ibyRVoujPsZmDVbrJsCU9AJwyxjmebf0/view?usp=sharing)
